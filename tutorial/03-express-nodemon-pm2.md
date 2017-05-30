@@ -1,20 +1,20 @@
 # 03 - Express, Nodemon, and PM2
 
-Code for this chapter available [here](https://github.com/verekia/js-stack-walkthrough/tree/master/03-express-nodemon-pm2).
+Le code pour ce chapitre est disponible ici [ici](https://github.com/verekia/js-stack-walkthrough/tree/master/03-express-nodemon-pm2).
 
-In this section we are going to create the server that will render our web app. We will also set up a development mode and a production mode for this server.
+Dans cette section, nous allons créer un serveur qui affichera notre web app. Nous configurerons également un mode développment et un mode production pour ce serveur.
 
 ## Express
 
-> 💡 **[Express](http://expressjs.com/)** is by far the most popular web application framework for Node. It provides a very simple and minimal API, and its features can be extended with *middleware*.
+> 💡 **[Express](http://expressjs.com/)** est de loin le framework le plus populaire pour Node. Il fournit une API minimaliste très simple, et ses fonctionnalités peuvent être étendues avec *middleware*.
 
-Let's set up a minimal Express server to serve an HTML page with some CSS.
+Mettons en place un serveur Express minimal qui servira à afficher notre page HTML avec un peu de CSS.
 
-- Delete everything inside `src`
+- Supprimez tous les fichiers dans`src`
 
-Create the following files and folders:
+Créez les fichiers et dossiers suivants :
 
-- Create a `public/css/style.css` file containing:
+- un fichier `public/css/style.css` qui contient :
 
 ```css
 body {
@@ -28,13 +28,13 @@ h1 {
 }
 ```
 
-- Create an empty `src/client/` folder.
+- un dossier `src/client/`
 
-- Create an empty `src/shared/` folder.
+- un dossier `src/shared/`
 
-This folder is where we put *isomorphic / universal* JavaScript code – files that are used by both the client and the server. A great use case of shared code is *routes*, as you will see later in this tutorial when we'll make an asynchronous call. Here we simply have some configuration constants as an example for now.
+C'est dans ce dossier que nous allons mettre le code JavaScript *universel/isomorphique* (des fichiers qui vont être utilisés par le client et par le serveur). Les routes sont un bon cas d'usage de code partagé, comme vous le constaterez plus tard dans ce tutoriel quand nous ferons des appel asynchrones. Ici nous avons simplement quelques constantes de configuration comme exemple.
 
-- Create a `src/shared/config.js` file, containing:
+- Créez un fichier `src/shared/config.js` qui contient :
 
 ```js
 // @flow
@@ -44,9 +44,9 @@ export const STATIC_PATH = '/static'
 export const APP_NAME = 'Hello App'
 ```
 
-If the Node process used to run your app has a `process.env.PORT` environment variable set (that's the case when you deploy to Heroku for instance), it will use this for the port. If there is none, we default to `8000`.
+Si le processus Node utilisé pour faire fonctionner votre app a une variable d'environnement `process.env.PORT` de configurée (c'est le cas quand on va déployer sur Heroku par exemple), il l'utilisera comme port. S'il n'y en a pas, le port par défaut sera `8000`.
 
-- Create a `src/shared/util.js` file containing:
+- Créez un fichier `src/shared/util.js` qui contient :
 
 ```js
 // @flow
@@ -55,13 +55,13 @@ If the Node process used to run your app has a `process.env.PORT` environment va
 export const isProd = process.env.NODE_ENV === 'production'
 ```
 
-That's a simple util to test if we are running in production mode or not. The `// eslint-disable-next-line import/prefer-default-export` comment is because we only have one named export here. You can remove it as you add other exports in this file.
+C'est un simple utilitaire pour tester si nous sommes en production ou non. Le commentaire `// eslint-disable-next-line import/prefer-default-export` est présent car nous n'avons qu'un seul export nommé ici. Si vous avez plusieurs exports dans ce fichier, vous pouvez le retirer.
 
-- Run `yarn add express compression`
+- Lancez `yarn add express compression`
 
-`compression` is an Express middleware to activate Gzip compression on the server.
+`compression` est un middleware qui va activer la compression Gzip sur le serveur.
 
-- Create a `src/server/index.js` file containing:
+- Créez un fichier `src/server/index.js` qui contient :
 
 ```js
 // @flow
@@ -89,9 +89,9 @@ app.listen(WEB_PORT, () => {
 })
 ```
 
-Nothing fancy here, it's almost Express' Hello World tutorial with a few additional imports. We're using 2 different static file directories here. `dist` for generated files, `public` for declarative ones.
+Rien de bien méchant ici, c'est presque le 'Hello world' du tutoriel de Express avec quelques imports en plus. Nous utilisons 2 dossiers statiques différents ici : `dist` pour les fichiers générés, `public` pour ceux déclarés.
 
-- Create a `src/server/render-app.js` file containing:
+- Créez un fichier `src/server/render-app.js` qui contient :
 
 ```js
 // @flow
@@ -114,11 +114,12 @@ const renderApp = (title: string) =>
 export default renderApp
 ```
 
-You know how you typically have *templating engines* on the back-end? Well these are pretty much obsolete now that JavaScript supports template strings. Here we create a function that takes a `title` as a parameter and injects it in both the `title` and `h1` tags of the page, returning the complete HTML string. We also use a `STATIC_PATH` constant as the base path for all our static assets.
+Vous savez, votre habitude d'avoir un langage de template pour le back-end ? Et bien c'est assez obsolète, maintenant que Javascript supporte les template strings. Ici, nous créons une fonction qui prend un paramètre `title` et l'injecte dans les balises `title` et `h1` de la page, et qui retourne une chaîne de caractère complète en HTML. Nous utilisons aussi une constante `STATIC_PATH` comme chemin de base pour tous nos assets statiques
 
-### HTML template strings syntax highlighting in Atom (optional)
+### Coloration syntaxique pour les template strings HTML sur Atom (optionnel)
 
-It might be possible to get syntax highlighting working for HTML code inside template strings depending on your editor. In Atom, if you prefix your template string with an `html` tag (or any tag that *ends* with `html`, like `ilovehtml`), it will automatically highlight the content of that string. I sometimes use the `html` tag of the `common-tags` library to take advantage of this:
+
+Il est possible de faire fonctionner la coloration syntaxique pour du code HTML dans des template strings selon votre éditeur. Dans Atom, si vous préfixez votre template string avec le tag `html` (ou n'importe quel tag qui *fini* par `html`, code `jaimehtml`), il colorera automatiquement le contenu de cette string.
 
 ```js
 import { html } from `common-tags`
@@ -128,68 +129,68 @@ const template = html`
 `
 ```
 
-I did not include this trick in the boilerplate of this tutorial, since it seems to only work in Atom, and it's less than ideal. Some of you Atom users might find it useful though.
+Nous n'avons pas inclu ce petit tour dans le *boilerplate* de ce tutoriel puisqu'il semble fonctionner seulement pour Atom, ce qui est loin d'être idéal. Certains d'entre vous utilisent Atom pourraient trouver cela utile.
 
-Anyway, back to business!
+Enfin bref, revenous à nos moutons !
 
-- In `package.json` change your `start` script like so: `"start": "babel-node src/server",`
+- Dans le fichier `package.json` changez votre script `start` comme ceci : `"start": "babel-node src/server",`
 
-🏁 Run `yarn start`, and hit `localhost:8000` in your browser. If everything works as expected you should see a blank page with "Hello App" written both on the tab title and as a green heading on the page.
+:checkered_flag: Lancez `yarn start`, et dans votre navigateur, rendez-vous sur `localhost:8000`. Si tout fonctionne comme prévu, vou devriez avoir une page blanche avec "Hello App" d'écrit dans l'onglet et dans le titre vert de la page.
 
-**Note**: Some processes – typically processes that wait for things to happen, like a server for instance – will prevent you from entering commands in your terminal until they're done. To interrupt such processes and get your prompt back, press **Ctrl+C**. You can alternatively open a new terminal tab if you want to keep them running while being able to enter commands. You can also make these processes run in the background but that's out of the scope of this tutorial.
+**Remarque**: Quelques processus - typiquement, ceux qui attendent que des choses se passent, comme un serveur par exemple - vous éviterons d'entrer des commandes dans votre terminal jusqu'à ce qu'il ait fini. Pour interrompre ce genre de processus et avoir à nouveau accès à votre prompt, il faut faire **Ctrl+C**. Comme alternative, vous pouvez ouvrir un nouvel onglet dans votre terminal pour être capable d'entre d'autres commandes en même temps que votre processus tourne. Vous pouvez ausi faire tourner ces processus en arrière-plan mais c'est ça sort du cadre de notre tutoriel.
 
 ## Nodemon
 
-> 💡 **[Nodemon](https://nodemon.io/)** is a utility to automatically restart your Node server when file changes happen in the directory.
+> 💡 **[Nodemon](https://nodemon.io/)** est un utilitaire qui va automatiquement relancer votre serveur Node dès qu'un fichier est modifié dans le dossier. Nous allons utiliser Nodemon dès que nous sommes en mode **développement**.
 
-We are going to use Nodemon whenever we are in **development** mode.
+- Lancez `yarn add --dev nodemon`
 
-- Run `yarn add --dev nodemon`
-
-- Change your `scripts` like so:
+- Changez votre `scripts` de la manière suivante :
 
 ```json
 "start": "yarn dev:start",
 "dev:start": "nodemon --ignore lib --exec babel-node src/server",
 ```
 
-`start` is now just a pointer to an other task, `dev:start`. That gives us a layer of abstraction to tweak what the default task is.
+`start` est maintenant un pointeur vers une autre tâche, `dev:start`. Cela nous donne une couche d'abstraction pour modifier ce qu'est la tâche par défaut.
 
-In `dev:start`, the `--ignore lib` flag is to *not* restart the server when changes happen in the `lib` directory. You don't have this directory yet, but we're going to generate it in the next section of this chapter, so it will soon make sense. Nodemon typically runs the `node` binary. In our case, since we're using Babel, we can tell Nodemon to use the `babel-node` binary instead. This way it will understand all the ES6/Flow code.
+Dans `dev:start`, le drapeau `--ignore lib` est pour *ne pas* redémarrer le serveur quand des changements arrivent dans le dossier `lib`. Vous n'avez pas encore ce dossier mais nous allons le générer dans la prochaine section de ce chapitre, donc tout va bientôt faire sens. Typiquement, Nodemon lance l'exécutable `node` Dans notre cas, puisqu'on utilise Babel, on peut dire à Nodemon d'utiliser l'exécutable `babel-node` à la place. De cet façon, il comprendra notre code ES6/Flow.
 
-🏁 Run `yarn start` and open `localhost:8000`. Go ahead and change the `APP_NAME` constant in `src/shared/config.js`, which should trigger a restart of your server in the terminal. Refresh the page to see the updated title. Note that this automatic restart of the server is different from *Hot Module Replacement*, which is when components on the page update in real-time. Here we still need a manual refresh, but at least we don't need to kill the process and restart it manually to see changes. Hot Module Replacement will be introduced in the next chapter.
+
+
+:checkered_flag: Lancez `yarn start` et ouvrez `localhost:8000` dans votre navigateur. Changez la constante `APP_NAME` dans `src/shared/config.js`, qui devrait déclencher le redémarrage de votre serveur dans le terminal. Rafraîchissez la page pour voir le titre modifié.  Notez que le redémarrage automatique du serveur est différent du *Hot Module Replacement* (quand les composants d'une page sont mis à jour en temps réel). Ici nous avons toujours besoin de rafraîchir la page manuellement, mais au moins nous n'avons pas à kill le processus et à le redémarrer manuellement pour voir les changements. Le Hot Module Replacement sera introduit dans le prochain chapitre.
 
 ## PM2
 
-> 💡 **[PM2](http://pm2.keymetrics.io/)** is a Process Manager for Node. It keeps your processes alive in production, and offers tons of features to manage them and monitor them.
+> 💡 **[PM2](http://pm2.keymetrics.io/)** est un process manager pour Node. Il garde tous nos processus vivants en production et offre des tonnes de fonctionnalités pour les gérer et suivre leurs performances.
 
-We are going to use PM2 whenever we are in **production** mode.
+Nous allons utiliser PM2 dès que nous sommes en **production**.
 
-- Run `yarn add --dev pm2`
+- Lancez `yarn add --dev pm2`
 
-In production, you want your server to be as performant as possible. `babel-node` triggers the whole Babel transpilation process for your files at each execution, which is not something you want in production. We need Babel to do all this work beforehand, and have our server serve plain old pre-compiled ES5 files.
+En production, vous voulez que votre serveur soit aussi performant que possible. `babel-node` déclenche tout le processus de transpilage de Babel pour vos fichiers à chaque exécution: vous ne voulez pas ça en production. Nous avons besoin que Babel fasse tout ce travail en amont, et que notre serveur rende nos bons vieux fichiers ES5 précompilés.
 
-One of the main features of Babel is to take a folder of ES6 code (usually named `src`) and transpile it into a folder of ES5 code (usually named `lib`).
+Une des principales fonctionnalités de Babel est de prendre un dossier de code ES6 (habituellement nommé `src`) et le transpiler en un dossier de code ES5 (habituellement nommé `lib`).
 
-This `lib` folder being auto-generated, it's a good practice to clean it up before a new build, since it may contain unwanted old files. A neat simple package to delete files with cross platform support is `rimraf`.
+Ce dossier `lib` étant auto-généré, le nettoyer avant un nouveau *build* est une bonne pratique, puisqu'il peut contenir d'anciens fichiers dont on ne veut plus. `rimraf` est un package simple et efficace pour supprimer les fichiers sur différentes plateformes.
 
-- Run `yarn add --dev rimraf`
+- Lancez `yarn add --dev rimraf`
 
-Let's add the following `prod:build` task to our `scripts`:
+Ajoutons la tâche `prod:build` à `scripts`:
 
 ```json
 "prod:build": "rimraf lib && babel src -d lib --ignore .test.js",
 ```
 
-- Run `yarn prod:build`, and it should generate a `lib` folder containing the transpiled code, except for files ending in `.test.js` (note that `.test.jsx` files are also ignored by this parameter).
+- Lancez `yarn prod:build`: il devrait générer un dossier `lib` qui contient le code transpilé, sauf pour les fichiers se terminant par `.test.js` (notez que les fichiers `.test.jsx` sont aussi ignorés par ce paramètre).
 
-- Add `/lib/` to your `.gitignore`
+- Ajoutez `/lib/` à votre `.gitignore`
 
-One last thing: We are going to pass a `NODE_ENV` environment variable to our PM2 binary. With Unix, you would do this by running `NODE_ENV=production pm2`, but Windows uses a different syntax. We're going to use a small package called `cross-env` to make this syntax work on Windows as well.
+Une dernière chose: nous allons passer une variable d'environnement `NODE_ENV` à notre exécutable PM2. Avec Unix, vous pouvez faire ça en lançant `NODE_ENV=production pm2`, mais Windows utilise une syntaxe différente. Nous allons utiliser un package qui s'appelle `cross-env` pour que cette syntaxe soit également utilisable sous Windows.
 
-- Run `yarn add --dev cross-env`
+- Lancez `yarn add --dev cross-env`
 
-Let's update our `package.json` like so:
+Modifions notre fichier `package.json` :
 
 ```json
 "scripts": {
@@ -204,18 +205,18 @@ Let's update our `package.json` like so:
 },
 ```
 
-🏁 Run `yarn prod:build`, then run `yarn prod:start`. PM2 should show an active process. Go to `http://localhost:8000/` in your browser and you should see your app. Your terminal should show the logs, which should be "Server running on port 8000 (production).". Note that with PM2, your processes are run in the background. If you press Ctrl+C, it will kill the `pm2 logs` command, which was the last command our our `prod:start` chain, but the server should still render the page. If you want to stop the server, run `yarn prod:stop`
+:checkered_flag: Lancez `yarn prod:build`, puis `yarn prod:start`. PM2  devrait montrer un processus actif. Rendez vous sur `http://localhost:8000/`: vous devriez voir votre app. Votre terminal devrait afficher les logs, qui devraient être "Server running on port 8000 (production).". Notez qu'avec PM2, vos processus sont lancés en arrière-plan. Si vous faites Ctrl+C, cela tuera la commande `pm2 logs`, qui était la denière commande de notre chaîne `prod:start`, mais le serveur devrait toujours afficher la page. Si vous voulez arrêter le serveur, lancez `yarn prod:stop`.
 
-Now that we have a `prod:build` task, it would be neat to make sure it works fine before pushing code to the repository. Since it is probably unnecessary to run it for every commit, I suggest adding it to the `prepush` task:
+Maintenant que nous avons une tâche `prod:build`, ça serait parfait si on pouvait s'assurer que tout fonctionne correctement avec de *push* du code sur le repo. Puisqu'il n'est pas vraiment nécessaire de le lancer à chaque commit, nous vous suggérons de l'ajouter à la tâche `prepush` :
 
 ```json
 "prepush": "yarn test && yarn prod:build"
 ```
 
-🏁 Run `yarn prepush` or just push your files to trigger the process.
+:checkered_flag: Lancez `yarn prepush` ou *pushez* vos fichiers pour déclencher le processus.
 
-**Note**: We don't have any test here, so Jest will complain a bit. Ignore it for now.
+**Remarque**: Nous n'avons aucun test ici, donc Jest se plaindra un peu. Ignorez le pour l'instant.
 
-Next section: [04 - Webpack, React, HMR](04-webpack-react-hmr.md#readme)
+Prochaine section: [04 - Webpack, React, HMR](04-webpack-react-hmr.md#readme)
 
-Back to the [previous section](02-babel-es6-eslint-flow-jest-husky.md#readme) or the [table of contents](https://github.com/verekia/js-stack-from-scratch#table-of-contents).
+Retour à la [section précédent](02-babel-es6-eslint-flow-jest-husky.md#readme) ou au [sommaire](https://github.com/naomihauret/js-stack-from-scratch#table-of-contents).
