@@ -29,7 +29,7 @@ document.querySelector(APP_CONTAINER_SELECTOR).innerHTML = '<h1>Hello Webpack!</
 
 Si vous voulez utiliser les fonctionnalités ES les plus récentes dans votre code client comme les `Promise`, vous allez avoir besoin d'inclure le [Polyfill Babel](https://babeljs.io/docs/usage/polyfill/)  avant tout autre chose dans votre bundle.
 
-- Lencez `yarn add babel-polyfill`
+- Lancez `yarn add babel-polyfill`
 
 Si vous lancez ESLint sur ce fichier, il se plaindra que `document` *undefined* (non-défini).
 
@@ -155,27 +155,26 @@ Cela donnera aux autres développeurs une indications sur ce qu'il faut faire s'
 
 Ok, ça fait beaucoup de changement, voyons si tout marche comme prévu :
 
-:checkered_flag: Lancez `yarn start` dans votre terminal. Ouvrez en un autre dans une nouvelle fenêtre ou un nouvel onglet, et lancez-y `yarn dev:wds`. Une fois que Webpack Dev Server a fini de générez le bundle et son sourcemaps (les deux devraient être des fichiers d'environ ~600ko) et que les 2 processus sont tranquilles dans votre terminal, ouvrez `http://localhost:8000/` dans votre navigateur. Vous devriez voir "Hello Webpack!". Ouvrez la console de votre navigateur  et sous l'onglet Source tab, vérifiez quels fichiers sont inclus. Vous devriez seulement voir sous
+:checkered_flag: Lancez `yarn start` dans votre terminal. Ouvrez en un autre dans une nouvelle fenêtre ou un nouvel onglet, et lancez-y `yarn dev:wds`. Une fois que Webpack Dev Server a fini de générez le bundle et son sourcemaps (les deux devraient être des fichiers d'environ ~600ko) et que les 2 processus sont tranquilles dans votre terminal, ouvrez `http://localhost:8000/` dans votre navigateur. Vous devriez voir "Hello Webpack!". Ouvrez la console de votre navigateur  et sous l'onglet Source, vérifiez quels fichiers sont inclus. Vous devriez seulement voir  `static/css/style.css` sous `localhost:8000/`, et tous vos fichiers sources ES6 sous `webpack://./src`. Cela signifie que les sourcemaps fonctionnent. Dans votre éditeur de texte, dans `src/client/index.js`, changez `Hello Webpack!` en n'importe quelle autre chaîne de caractère. Dès que vous avez sauvegardé votre fichier, dans votre terminal, Webpack Dev Server devrait générer un nouveau bundle, et l'onglet de votre navigateur, se rafraîchir automatiquement.
 
-You should only see `static/css/style.css` under `localhost:8000/`, and have all your ES6 source files under `webpack://./src`. That means sourcemaps are working. In your editor, in `src/client/index.js`, try changing `Hello Webpack!` into any other string. As you save the file, Webpack Dev Server in your terminal should generate a new bundle and the Chrome tab should reload automatically.
 
-- Kill the previous processes in your terminals with Ctrl+C, then run `yarn prod:build`, and then `yarn prod:start`. Open `http://localhost:8000/` and you should still see "Hello Webpack!". In the Source tab of the Chrome console, you should this time find `static/js/bundle.js` under `localhost:8000/`, but no `webpack://` sources. Click on `bundle.js` to make sure it is minified. Run `yarn prod:stop`.
+- Tuez le processus précédent dans votre terminal avec Ctrl+C, puis lancez  `yarn prod:build`, et ensuite `yarn prod:start`. Ouvrez `http://localhost:8000/` dans votre navigateur. Vous devriez toujours voir "Hello Webpack!". Dans l'onglet Source de votre navigateur, vous devriez voir `static/js/bundle.js` sous `localhost:8000/`, mais pas de sources `webpack://`. Cliquez sur `bundle.js` pour être sûr que tout est bien minifié. Lancez `yarn prod:stop`.
 
-Good job, I know this was quite dense. You deserve a break! The next section is easier.
+Bien joué, c'était assez intense. Vous avez bien mérité une pause :clap: ! La prochaine section est plus simple.
 
-**Note**: I would recommend to have at least 3 terminals open, one for your Express server, one for the Webpack Dev Server, and one for Git, tests, and general commands like installing packages with `yarn`. Ideally, you should split your terminal screen in multiple panes to see them all.
+**Note**: Nous vous recommandons d'avoir au moins 3 terminaux ouverts: un pour le serveur Express, un autre pour Webpack Dev Server, et enfin un pour Git, les tests, et les commandes générales comme l'installation de package avec `yarn`. Idéalement, vous devriez scindez la fenêtre de vos terminaux en plusieurs panels afin de tous les voir d'un coup.
 
 ## React
 
-> 💡 **[React](https://facebook.github.io/react/)** is a library for building user interfaces by Facebook. It uses the **[JSX](https://facebook.github.io/react/docs/jsx-in-depth.html)** syntax to represent HTML elements and components while leveraging the power of JavaScript.
+> 💡 **[React](https://facebook.github.io/react/)** est une bibliothèque créée par Facebook qui permet de mettre en place des interfaces utilisateur. Il utilise la syntaxe **[JSX](https://facebook.github.io/react/docs/jsx-in-depth.html)** pour représenter des éléments HTML et des composants tout en exploitant la puissance de JavaScript.
 
 In this section we are going to render some text using React and JSX.
 
-First, let's install React and ReactDOM:
+Tout d'abord, installons React et ReactDOM :
 
-- Run `yarn add react react-dom`
+- Lancez `yarn add react react-dom`
 
-Rename your `src/client/index.js` file into `src/client/index.jsx` and write some React code in it:
+Renommez votre fichier `src/client/index.js` en `src/client/index.jsx` et écrivez-y un peu de React :
 
 ```js
 // @flow
@@ -203,9 +202,9 @@ const App = () => <h1>Hello React!</h1>
 export default App
 ```
 
-Since we use the JSX syntax here, we have to tell Babel that it needs to transform it with the `babel-preset-react` preset. And while we're at it, we're also going to add a Babel plugin called `flow-react-proptypes` which automatically generates PropTypes from Flow annotations for your React components.
+Puisqu'on utilise la syntaxe JSX ici, nous devons expliquer à Babel qu'il a besoin de transformer ce JSX avec la préconfiguration `babel-preset-react`. Et tant qu'on y est, nous allons aussi ajouter le plugin Babel `flow-react-proptypes` qui va automatiquement générer les PropTypes depuis nos annotations Flow pour nos composants React.
 
-- Run `yarn add --dev babel-preset-react babel-plugin-flow-react-proptypes` and edit your `.babelrc` file like so:
+- Lancez `yarn add --dev babel-preset-react babel-plugin-flow-react-proptypes` et éditez votre fichier `.babelrc` de cette façon :
 
 ```json
 {
@@ -220,19 +219,19 @@ Since we use the JSX syntax here, we have to tell Babel that it needs to transfo
 }
 ```
 
-:checkered_flag: Run `yarn start` and `yarn dev:wds` and hit `http://localhost:8000`. You should see "Hello React!".
+:checkered_flag: Lancez `yarn start` et `yarn dev:wds`. Dans votre navigateur, rendez vous sur `http://localhost:8000`. Vous devriez voir "Hello React!".
 
-Now try changing the text in `src/client/app.jsx` to something else. Webpack Dev Server should reload the page automatically, which is pretty neat, but we are going to make it even better.
+Maintenant essayez de changer le texte du fichier `src/client/app.jsx` en quelque chose d'autre. Webpack Dev Server devrait recharger la page automatiquement, ce qui est plutôt cool, mais on va rendre ça encore mieux. :ok_hand:
 
 ## Hot Module Replacement
 
-> 💡 **[Hot Module Replacement](https://webpack.js.org/concepts/hot-module-replacement/)** (*HMR*) is a powerful Webpack feature to replace a module on the fly without reloading the entire page.
+> 💡 **[Hot Module Replacement](https://webpack.js.org/concepts/hot-module-replacement/)** (*HMR*) est une fonctionnalité Webpack puissante qui remplace automatiquement un module sans avoir à recharger toute la page.
 
-To make HMR work with React, we are going to need to tweak a few things.
+Pour que HMR fonctionne avec React, nous allons devoir ajuster quelques petites choses :
 
-- Run `yarn add react-hot-loader@next`
+- Lancez `yarn add react-hot-loader@next`
 
-- Edit your `webpack.config.babel.js` like so:
+- Éditez votre fichier `webpack.config.babel.js` de la façon suivante :
 
 ```js
 import webpack from 'webpack'
@@ -257,9 +256,9 @@ plugins: [
 ],
 ```
 
-The `headers` bit is to allow Cross-Origin Resource Sharing which is necessary for HMR.
+La partie `headers` autorise le *Cross-Origin Resource Sharing* qui est nécessaire au bon fonctionnement des Hot Module Replacement.
 
-- Edit your `src/client/index.jsx` file:
+- Éditez votre fichier `src/client/index.jsx` :
 
 ```js
 // @flow
@@ -292,10 +291,10 @@ if (module.hot) {
 }
 ```
 
-We need to make our `App` a child of `react-hot-loader`'s `AppContainer`, and we need to `require` the next version of our `App` when hot-reloading. To make this  process clean and DRY, we create a little `wrapApp` function that we use in both places it needs to render `App`. Feel free to move the `eslint-disable global-require` to the top of the file to make this more readable.
+Nous avons besoin de créer à notre `App` un enfant de l'`AppContainer` de `react-hot-loader`, et nous allons avoir besoin de `require` la prochaine version de notre `App` lors du *hot reloading*. Pour faire en sorte que ce processus soit propre et respecte bien les principes DRY (don't repeat yourself - ne te répète pas :fr:), nous créons une petite fonction  `wrapApp` que nous utilisons aux endroits où il a besoin d'afficher `App`. Vous êtes libre de bouger `eslint-disable global-require` en haut du fichier pour s'assurer que ce soit plus lisible.
 
-:checkered_flag: Restart your `yarn dev:wds` process if it was still running. Open `localhost:8000`. In the Console tab, you should see some logs about HMR. Go ahead and change something in `src/client/app.jsx` and your changes should be reflected in your browser after a few seconds, without any full-page reload!
+:checkered_flag: S'il était toujours en train de tourner, redémarrez votre processus `yarn dev:wds`. Ouvrez `localhost:8000` dans votre navigateur. Dans l'onglet console de l'inspecteur du navigateur, vous devriez des logs qui concerne HMR. Allez-y, changez quelque chose dans `src/client/app.jsx` et sauvegardez. Vos changements ont lieu dans le navigateur en quelques secondes sans que la page doive se recharger entièrement ! :+1:
 
-Next section: [05 - Redux, Immutable, Fetch](05-redux-immutable-fetch.md#readme)
+Prochaine section: [05 - Redux, Immutable, Fetch](05-redux-immutable-fetch.md#readme)
 
-Back to the [previous section](03-express-nodemon-pm2.md#readme) or the [table of contents](https://github.com/verekia/js-stack-from-scratch#table-of-contents).
+Retourner à la [section précédente](03-express-nodemon-pm2.md#readme) ou au [sommaire](https://github.com/naomihauret/js-stack-from-scratch#table-of-contents).
