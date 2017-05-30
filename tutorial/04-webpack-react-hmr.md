@@ -151,7 +151,7 @@ console.log(`Server running on port ${WEB_PORT} ${isProd ? '(production)' :
   '(development).\nKeep "yarn dev:wds" running in an other terminal'}.`)
 ```
 
-Cela donnera aux autres développeurs une indications sur ce qu'il faut faire s'ils essaient juste de lancer `yarn start` sans Webpack Dev Server.
+Cela donnera aux autres développeurs une indication sur ce qu'il faut faire s'ils essaient juste de lancer `yarn start` sans Webpack Dev Server.
 
 Ok, ça fait beaucoup de changement, voyons si tout marche comme prévu :
 
