@@ -18,7 +18,7 @@
 
 Bienvenue sur ce tutoriel de prise en main d'une *stack* (ensemble d'outils :fr:) Javascript moderne : **JavaScript Stack from Scratch**.
 
-> 🎉 **Il s'agit de la V2 du tutoriel, des changements majeurs sont apparus depuis la première version en 2016. Jetez un oeil au [Change Log](/CHANGELOG.md) !**
+> :exclamation: **Il s'agit de la V2 du tutoriel, des changements majeurs sont apparus depuis la première version en 2016. Jetez un oeil au [Change Log](/CHANGELOG.md) !**
 
 Il s'agit d'un guide allant droit au but sur comment mettre en place toute une *stack* JavaScript. Pour le suivre, il faut avoir un minimum de connaissances en programmation ainsi que des bases de JavaScript. **Ce guide se concentre sur comment relier les outils ensemble** et vous donne les **exemples les plus simples possible** pour chaque outil. Vous pouvez voir ce tutoriel comme *un moyen d'écrire votre boilerplate (*modèle* :fr: *) depuis rien*. Le but de ce tutoriel étant d'assembler divers outils, on ne va pas explorer en détails comment ces outils fonctionnent individuellement. Pour cela, référez-vous à leur documentation ou essayez de trouver d'autres tutoriels si vous voulez en acquérir une plus grande connaissance.
 
@@ -66,8 +66,9 @@ Si vous souhaitez ajouter votre traduction, merci de lire les [recommandations d
 - [Bulgare](https://github.com/mihailgaberov/js-stack-from-scratch) par [mihailgaberov](http://github.com/mihailgaberov)
 - [Italien](https://github.com/fbertone/guida-javascript-moderno) par [Fabrizio Bertone](https://github.com/fbertone) - [fbertone.it](http://fbertone.it)
 - [Chinois simplifié](https://github.com/yepbug/js-stack-from-scratch/) par [@yepbug](https://github.com/yepbug)
+- [Français](https://github.com/naomihauret/js-stack-from-scratch/) par [Naomi Hauret](https://twitter.com/naomihauret)
 
-Vous pouvez jeter un oeil aux [traductions en cours](https://github.com/verekia/js-stack-from-scratch/issues/147).
+Vous pouvez jeter un oeil aux autres [traductions en cours](https://github.com/verekia/js-stack-from-scratch/issues/147).
 
 ### V1 :baby:
 
