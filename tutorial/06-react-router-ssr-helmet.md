@@ -6,7 +6,7 @@ Dans ce chapitre, nos allons créer différentes pages pour notre app et rendre 
 
 ## React Router
 
-> 💡 **[React Router](https://reacttraining.com/react-router/)** est une bibliothèque faite pour naviguer entre les différentes pages de votre app React. Elle peut être utilisée à la fois sur le client et aussi sur le serveur.
+> :bulb: **[React Router](https://reacttraining.com/react-router/)** est une bibliothèque faite pour naviguer entre les différentes pages de votre app React. Elle peut être utilisée à la fois sur le client et aussi sur le serveur.
 
 React Router a eu de grosses modifications à la sortie de la v4, toujours en beta. Puisqu'on a envie que ce tutoriel soit durable, nous utiliserons la v4 de React Router.
 
@@ -428,7 +428,7 @@ Ici, on alimente notre store côté client avec le `preloadedState` qu'on a reç
 
 > :question: **[React Helmet](https://github.com/nfl/react-helmet)**: Une bibliothèque pour injecter du contenu dans le `head` d'une app React, à la fois sur le client et le serveur.
 
-I purposely made you write `FIX ME` in the title to highlight the fact that even though we are doing server-side rendering, we currently do not fill the `title` tag properly (or any of the tags in `head` that vary depending on the page you're on).
+Nous avons fait exprès de vous faire écrire `FIX ME` dans le titre pour souligner le fait que même si nous faisons du server-side rendering, on ne remplit pas la balise `title` correctement (ni aucune autre balise dans le `head` qui varie selon la page sur laquelle vous vous trouvez).
 
 - Lancez `yarn add react-helmet`
 
@@ -456,7 +456,7 @@ const renderApp = (/* [...] */) => {
 }
 ```
 
-React Helmet uses [react-side-effect](https://github.com/gaearon/react-side-effect)'s `rewind` to pull out some data from the rendering of our app, which will soon contain some `<Helmet />` components. Those `<Helmet />` components are where we set the `title` and other `head` details for each page. Note that `Helmet.rewind()` *must* come after `ReactDOMServer.renderToString()`.
+React Helmet utilise `rewind` de [react-side-effect](https://github.com/gaearon/react-side-effect) pour extraire des données du rendu de notre app, qui contiendra bientôt quelques composants `<Helmet />` components. Ces composants `<Helmet />` sont là où nous initialisons `title` et d'autres détails de `head` pour chaque page. Noteez que `Helmet.rewind()` *doit* arriver après `ReactDOMServer.renderToString()`.
 
 - Éditez `src/shared/app.jsx` comme ceci :
 
@@ -581,10 +581,10 @@ const NotFoundPage = () =>
 export default NotFoundPage
 ```
 
-The `<Helmet>` component doesn't actually render anything, it just injects content in the `head` of your document and exposes the same data to the server.
+En fait, le composant `<Helmet>` ne fait rien apparaître du tout, il injecte juste du contenu dans le `head` de notre document et montre les mêmes données au serveur.
 
-:checkered_flag: Run `yarn start` and `yarn dev:wds` and navigate between pages. The title on your tab should change when you navigate, and it should also stay the same when you refresh the page. Show the source of the page to see how React Helmet sets the `title` and `meta` tags even for server-side rendering.
+:checkered_flag: Lancez `yarn start`, `yarn dev:wds` et naviguez entre les différentes pages. Le titre de votre onglet devrait changer selon la page sur laquelle vous vous trouvez et devrait rester le même quand vous rafraîchissez la page. Affichez le code source de la page dans votre navigateur pour voir comment React Helmet initialise les balises `title` et `meta` tags même pour du rendu côté serveur.
 
-Next section: [07 - Socket.IO](07-socket-io.md#readme)
+Prochaine section: [07 - Socket.IO](07-socket-io.md#readme)
 
-Back to the [previous section](05-redux-immutable-fetch.md#readme) or the [table of contents](https://github.com/verekia/js-stack-from-scratch#table-of-contents).
+Retour à la [section précédente](05-redux-immutable-fetch.md#readme) ou au [sommaire](https://github.com/naomihauret/js-stack-from-scratch#table-of-contents).

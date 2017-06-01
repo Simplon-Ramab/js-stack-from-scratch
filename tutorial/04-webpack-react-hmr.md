@@ -4,7 +4,7 @@ Le code pour ce chapitre est disponible [ici](https://github.com/verekia/js-stac
 
 ## Webpack
 
-> 💡 **[Webpack](https://webpack.js.org/)** est un *module bundler* (*empaqueteur de module* :fr:). Il prend nos différents fichiers sources, les traite et les fusionne (habituellement) en un seul fichier JavScript appelé "bundle", qui est le seul fichier qui sera exécuté par le client.
+> :bulb: **[Webpack](https://webpack.js.org/)** est un *module bundler* (*empaqueteur de module* :fr:). Il prend nos différents fichiers sources, les traite et les fusionne (habituellement) en un seul fichier JavScript appelé "bundle", qui est le seul fichier qui sera exécuté par le client.
 
 Créons un *hello world* basique et *empaquetons-le* avec Webpack.
 
@@ -166,7 +166,7 @@ Bien joué, c'était assez intense. Vous avez bien mérité une pause :clap: ! L
 
 ## React
 
-> 💡 **[React](https://facebook.github.io/react/)** est une bibliothèque créée par Facebook qui permet de mettre en place des interfaces utilisateur. Il utilise la syntaxe **[JSX](https://facebook.github.io/react/docs/jsx-in-depth.html)** pour représenter des éléments HTML et des composants tout en exploitant la puissance de JavaScript.
+> :bulb: **[React](https://facebook.github.io/react/)** est une bibliothèque créée par Facebook qui permet de mettre en place des interfaces utilisateur. Il utilise la syntaxe **[JSX](https://facebook.github.io/react/docs/jsx-in-depth.html)** pour représenter des éléments HTML et des composants tout en exploitant la puissance de JavaScript.
 
 In this section we are going to render some text using React and JSX.
 
@@ -225,7 +225,7 @@ Maintenant essayez de changer le texte du fichier `src/client/app.jsx` en quelqu
 
 ## Hot Module Replacement
 
-> 💡 **[Hot Module Replacement](https://webpack.js.org/concepts/hot-module-replacement/)** (*HMR*) est une fonctionnalité Webpack puissante qui remplace automatiquement un module sans avoir à recharger toute la page.
+> :bulb: **[Hot Module Replacement](https://webpack.js.org/concepts/hot-module-replacement/)** (*HMR*) est une fonctionnalité Webpack puissante qui remplace automatiquement un module sans avoir à recharger toute la page.
 
 Pour que HMR fonctionne avec React, nous allons devoir ajuster quelques petites choses :
 

@@ -6,7 +6,7 @@ Maintenant nous allons utiliser un peu de syntaxe ES6, qui est une grande améli
 
 ## Babel
 
-> 💡 **[Babel](https://babeljs.io/)** est un compilateur qui transforme le code ES6 (et d'autres trucs comme la syntaxe JSX de React par exemple en code ES5. Babel est très modulaire et peut être utilisé dans une tonne d'[environnements différents](https://babeljs.io/docs/setup/). C'est de loin le compilateur ES5 préféré de la communauté React.
+> :bulb: **[Babel](https://babeljs.io/)** est un compilateur qui transforme le code ES6 (et d'autres trucs comme la syntaxe JSX de React par exemple en code ES5. Babel est très modulaire et peut être utilisé dans une tonne d'[environnements différents](https://babeljs.io/docs/setup/). C'est de loin le compilateur ES5 préféré de la communauté React.
 
 - Déplacez votre fichier `index.js` dans un nouveau dossier appelé `src` (src pour *source*). C'est ici que nous allons écrire tout notre code ES6. Retirez tout le code précédent relatif à `color` et remplacez le par un simple :
 
@@ -41,7 +41,7 @@ Maintenant, si vous essayez de lancer `yarn start`, la console devrait afficher 
 
 ## ES6
 
-> 💡 **[ES6](http://es6-features.org/)**: L'amélioration la plus significative du langage JavaScript. Il y a trop de fonctionnalités ES6 pour qu'on les liste toutes ici, mais du code ES6 typique utilise des classes avec `class`, `const` et `let`, les template strings, et les *arrow functions* (fonction flèche :fr:) (`(text) => { console.log(text) }`).
+> :bulb: **[ES6](http://es6-features.org/)**: L'amélioration la plus significative du langage JavaScript. Il y a trop de fonctionnalités ES6 pour qu'on les liste toutes ici, mais du code ES6 typique utilise des classes avec `class`, `const` et `let`, les template strings, et les *arrow functions* (fonction flèche :fr:) (`(text) => { console.log(text) }`).
 
 ### Créer une classe en ES6
 
@@ -88,7 +88,7 @@ Dans `dog.js`, on remplace aussi `module.exports = Dog` par `export default Dog`
 
 > **Un linter** est un outil visant à améliorer la qualité et la consistance du code.
 
-> 💡 **[ESLint](http://eslint.org)** est un linter de choix pour du code ES6. Un linter va nous donner des informations à propos du format du code, qui va renforcer sa consistance et sa cohérence. C'est aussi un bon moyen d'apprendre des choses sur JavaScript en faisant des erreurs que ESLint va détecter.
+> :bulb: **[ESLint](http://eslint.org)** est un linter de choix pour du code ES6. Un linter va nous donner des informations à propos du format du code, qui va renforcer sa consistance et sa cohérence. C'est aussi un bon moyen d'apprendre des choses sur JavaScript en faisant des erreurs que ESLint va détecter.
 
 ESLint travaille avec des *règles*, et il y en a [beaucoup](http://eslint.org/docs/rules/) (:uk:). Au lieu de configurer les règles que nous voulons suivre pour notre code par nous-même, Nous allons utiliser une configuration faite par Airbnb. Cette configuration utilise quelques plugins que nous allons aussi avoir besoin d'installer.
 
@@ -189,7 +189,7 @@ Ce chapitre vous a permi d'installer ESLint dans votre terminal, ce qui est plut
 
 ## Flow
 
-> 💡 **[Flow](https://flowtype.org/)**: Un type checker statique par Facebook. Il détecte les types incohérents dans le code. Par exemple, il vous donnera une erreur si vous utilisez une chaîne de caractère là où il faudrait utiliser un nombre.
+> :bulb: **[Flow](https://flowtype.org/)**: Un type checker statique par Facebook. Il détecte les types incohérents dans le code. Par exemple, il vous donnera une erreur si vous utilisez une chaîne de caractère là où il faudrait utiliser un nombre.
 
 Maintenant, notre code JavaScript est de l'ES6 valide. Flow peut analyser du JavaScript pur pour nous donner quelques idées, mais pour utiliser toute sa puissance, on va avoir besoin d'ajouter des annotations de type dans notre code, ce qui le rendra non-standard. On va avoir besoin d'apprendre à Babel et à ESLint ce que sont ces annotations de types pour qu'ils ne paniquent pas quand ils parcourront nos fichiers.
 
@@ -296,7 +296,7 @@ Comme avec ESLint, vous devriez consacrer un peu de votre temps à configurer vo
 
 ## Jest
 
-> 💡 **[Jest](https://facebook.github.io/jest/)**: Une bibliothèque de test JavaScript créée par Facebook. Elle est très simple à configurer et fournit tout ce qu'il faut pour faire nos tests unitaires. Jest permet aussi de tester les composants React.
+> :bulb: **[Jest](https://facebook.github.io/jest/)**: Une bibliothèque de test JavaScript créée par Facebook. Elle est très simple à configurer et fournit tout ce qu'il faut pour faire nos tests unitaires. Jest permet aussi de tester les composants React.
 
 - Lancez `yarn add --dev jest babel-jest` pour installer Jest et le package pour l'utiliser avec Babel.
 
@@ -336,7 +336,7 @@ Le drapeau `--coverage` dit à Jest de générer automatiquement des données de
 
 ## Git Hooks avec Husky
 
-> :question: **[Git Hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)**: Des scripts qui sont lancés quand certaines actions ont lieu, comme un commit ou un push
+> :bulb: **[Git Hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)**: Des scripts qui sont lancés quand certaines actions ont lieu, comme un commit ou un push
 
 Ok, maintenant on a cette superbe tâche `test` qui nous dit si notre code est bon ou pas. Maintenant, on va configurer des Git Hooks pour lancer automatiquement cette tâche avant chaque `git commit` et `git push`, ce qui nous évitera de pusher du mauvais code dans notre repo si la tâche `test` ne réussi pas.
 

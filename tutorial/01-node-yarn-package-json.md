@@ -6,7 +6,7 @@ Dans cette section, nous allons configurer Node, Yarn, un fichier `package.json`
 
 ## Node :computer:
 
-> 💡 **[Node.js](https://nodejs.org/)** est un environnement d'exécution JavaScript. On l'utilise principalement pour du développement back-end, mais aussi pour du scripting de façon générale. En développement front-end, Node peut être utilisé pour exécuter une série de tâches comme le linting, les tests ou encore la concaténation de fichiers.
+> :bulb: **[Node.js](https://nodejs.org/)** est un environnement d'exécution JavaScript. On l'utilise principalement pour du développement back-end, mais aussi pour du scripting de façon générale. En développement front-end, Node peut être utilisé pour exécuter une série de tâches comme le linting, les tests ou encore la concaténation de fichiers.
 
 Tout au long de ce tutoriel, nous allons utiliser Node pour pratiquement **tout**, vous allez donc en avoir besoin ! Rendez vous sur la [page de téléchargement](https://nodejs.org/en/download/current/) pour les installeurs **macOS/OSX** ou **Windows**, ou la [ page d'installation de packages](https://nodejs.org/en/download/package-manager/) pour les distributions Linux..
 
@@ -29,7 +29,7 @@ NPM est le package manager (*gestionnaire de paquets* :fr:) par défaut pour Nod
 
 ## Yarn :cat:
 
-> 💡 **[Yarn](https://yarnpkg.com/)** est un package manager beaucoup plus rapide que NPM qui offre le support hors-ligne et récupère les dépendances [de façon plus prédictible](https://yarnpkg.com/en/docs/yarn-lock).
+> :bulb: **[Yarn](https://yarnpkg.com/)** est un package manager beaucoup plus rapide que NPM qui offre le support hors-ligne et récupère les dépendances [de façon plus prédictible](https://yarnpkg.com/en/docs/yarn-lock).
 
 Depuis qu'il est [sorti](https://code.facebook.com/posts/1840075619545360) en octobre 2016, Yarn a rapidement été adopté. Il pourrait d'ailleurs bientôt devenir le package manager plébéscité par la communauté JavaScript. Si vous voulez rester avec NPM, vous pouvez tout simplement remplacer toutes les commandes `yarn add` et `yarn add --dev` de ce tutoriel par `npm install --save` et `npm install --save-dev`.
 
@@ -42,7 +42,7 @@ curl -o- -L https://yarnpkg.com/install.sh | bash
 
 ## `package.json` :package:
 
-> 💡 **[package.json](https://yarnpkg.com/en/docs/package-json)** est le fichier utiliser pour décrire et configurer votre projet JavaScript. Il contient toutes les informations générales (le nom de votre projet, sa version, les différents contributeurs, sa licence, etc), les configuration d'options pour les outils que vous utilisez, et même une section pour lancer des *tâches*.
+> :bulb: **[package.json](https://yarnpkg.com/en/docs/package-json)** est le fichier utiliser pour décrire et configurer votre projet JavaScript. Il contient toutes les informations générales (le nom de votre projet, sa version, les différents contributeurs, sa licence, etc), les configuration d'options pour les outils que vous utilisez, et même une section pour lancer des *tâches*.
 
 - Créez un nouveau dossier dans lequel vous allez travailler et rendez vous dedans (`cd`).
 - Lancez `yarn init` et répondez aux questions (utilisez `yarn init -y` pour passer les questions). Cela générera un fichier `package.json` automatiquement.

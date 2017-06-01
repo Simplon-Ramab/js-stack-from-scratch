@@ -6,7 +6,7 @@ Dans cette section, nous allons créer un serveur qui affichera notre web app. N
 
 ## Express
 
-> 💡 **[Express](http://expressjs.com/)** est de loin le framework le plus populaire pour Node. Il fournit une API minimaliste très simple, et ses fonctionnalités peuvent être étendues avec *middleware*.
+> :bulb: **[Express](http://expressjs.com/)** est de loin le framework le plus populaire pour Node. Il fournit une API minimaliste très simple, et ses fonctionnalités peuvent être étendues avec *middleware*.
 
 Mettons en place un serveur Express minimal qui servira à afficher notre page HTML avec un peu de CSS.
 
@@ -141,7 +141,7 @@ Enfin bref, revenous à nos moutons !
 
 ## Nodemon
 
-> 💡 **[Nodemon](https://nodemon.io/)** est un utilitaire qui va automatiquement relancer votre serveur Node dès qu'un fichier est modifié dans le dossier. Nous allons utiliser Nodemon dès que nous sommes en mode **développement**.
+> :bulb: **[Nodemon](https://nodemon.io/)** est un utilitaire qui va automatiquement relancer votre serveur Node dès qu'un fichier est modifié dans le dossier. Nous allons utiliser Nodemon dès que nous sommes en mode **développement**.
 
 - Lancez `yarn add --dev nodemon`
 
@@ -162,7 +162,7 @@ Dans `dev:start`, le drapeau `--ignore lib` est pour *ne pas* redémarrer le ser
 
 ## PM2
 
-> 💡 **[PM2](http://pm2.keymetrics.io/)** est un process manager pour Node. Il garde tous nos processus vivants en production et offre des tonnes de fonctionnalités pour les gérer et suivre leurs performances.
+> :bulb: **[PM2](http://pm2.keymetrics.io/)** est un process manager pour Node. Il garde tous nos processus vivants en production et offre des tonnes de fonctionnalités pour les gérer et suivre leurs performances.
 
 Nous allons utiliser PM2 dès que nous sommes en **production**.
 

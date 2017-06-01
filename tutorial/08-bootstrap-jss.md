@@ -1,43 +1,43 @@
 # 08 - Bootstrap and JSS
 
-Code for this chapter available in the [`master-no-services`](https://github.com/verekia/js-stack-boilerplate/tree/master-no-services) branch of the [JS-Stack-Boilerplate repository](https://github.com/verekia/js-stack-boilerplate).
+Le code de ce chapitre est disponible dans la branche [`master-no-services`](https://github.com/verekia/js-stack-boilerplate/tree/master-no-services) du [repo JS-Stack-Boilerplate](https://github.com/verekia/js-stack-boilerplate).
 
-Alright! It's time to give our ugly app a facelift. We are going to use Twitter Bootstrap to give it some base styles. We'll then add a CSS-in-JS library to add some custom styles.
+Bien ! Il est temps de faire une beauté à notre app toute moche :lipstick:. Nous allons utiliser Twitter Bootstrap pour lui appliquer des styles basiques. On ajoutera ensuite une bibliothèque CSS-dans-le-JS pour ajouter du style personnalisé.
 
 ## Twitter Bootstrap
 
-> 💡 **[Twitter Bootstrap](http://getbootstrap.com/)** is a library of UI components.
+> :bulb: **[Twitter Bootstrap](http://getbootstrap.com/)** est une bibliothèque de composants d'interface utilisateur.
 
-There are 2 options to integrate Bootstrap in a React app. Both have their pros and cons:
+Il y a 2 options pour intégrer Bootstrap dans une app React. Les 2 ont leurs avantages et leurs inconvénients :
 
-- Using the official release, **which uses jQuery and Tether** for the behavior of its components.
-- Using a third-party library that re-implements all of Bootstrap's components in React, like [React-Bootstrap](https://react-bootstrap.github.io/) or [Reactstrap](https://reactstrap.github.io/).
+- la première consiste à utiliser la distribution officielle, **qui utilise jQuery et Tether** pour le comportement de ses composants
+- la deuxième repose sur une bibliothèque qui ré-implémente tous les composants Boostrap en React, comme [React-Bootstrap](https://react-bootstrap.github.io/) or [Reactstrap](https://reactstrap.github.io/).
 
-Third-party libraries provide very convenient React components that dramatically reduce the code bloat compared to the official HTML components, and integrate greatly with your React codebase. That being said, I must say that I am quite reluctant to use them, because they will always be *behind* the official releases (sometimes potentially far behind). They also won't work with Bootstrap themes that implement their own JS. That's a pretty tough drawback considering that one major strength of Bootstrap is its huge community of designers who make beautiful themes.
+Les bibliothèques tierces fournissent des composants React très pratique qui réduisent drastiquement le code trop long des composants HTML officiels, et s'intègre vraiment bien avec votre base React. Cela étant dit, nous devons admettre que nous sommes assez réticent à utiliser ces bibliothèques, car elles sont toujours *derrière* par rapport aux distributions officiels (et parfois, potentiellement très loin derrière). Aussi, elles ne marchent pas avec les thèmes Bootstrap qui implémentent leur propre JS. C'est un gros pas en arrière quand on sait que l'une des forces principales de Bootstrap est son énorme communauté de designers capable de créer des thèmes magnifiques.
 
-For this reason, I'm going to make the tradeoff of integrating the official release, alongside with jQuery and Tether. One of the concerns of this approach is the file size of our bundle of course. For your information, the bundle weighs about 200KB (Gzipped) with jQuery, Tether, and Bootstrap's JS included. I think that's reasonable, but if that's too much for you, you should probably consider an other option for Bootstrap, or even not using Bootstrap at all.
+Pour cette raison, nous allons plutôt intégrer la distribution officielle, avec jQuery et Tether. Un des problèmes de cette approche est bien sûr, la taille de notre bundle. Pour votre information, un bundle fait environ 200Ko (zippé), jQuery, Tether, et le JS de Bootstrap' inclus. Nous pensons que c'est assez raisonnable, mais si c'est trop pour vous, vous devriez considérez le fait d'utiliser une autre option pour Bootstrap, voire de ne pas utiliser Bootstrap du tout.
 
-### Bootstrap's CSS
+### Le CSS de Bootstrap
 
-- Delete `public/css/style.css`
+- Supprimez le fichier `public/css/style.css`
 
-- Run `yarn add bootstrap@4.0.0-alpha.6`
+- Lancez `yarn add bootstrap@4.0.0-alpha.6`
 
-- Copy `bootstrap.min.css` and `bootstrap.min.css.map` from `node_modules/bootstrap/dist/css` to your `public/css` folder.
+- Copiez le fichier `bootstrap.min.css` et `bootstrap.min.css.map` de `node_modules/bootstrap/dist/css` dans votre dossier `public/css`.
 
-- Edit `src/server/render-app.jsx` like so:
+- Éditez `src/server/render-app.jsx` comme ceci :
 
 ```html
 <link rel="stylesheet" href="${STATIC_PATH}/css/bootstrap.min.css">
 ```
 
-### Bootstrap's JS with jQuery and Tether
+### Le JS de Bootstrap avec jQuery et Tether
 
-Now that we have Bootstrap's styles loaded on our page, we need the JavaScript behavior for the components.
+Maintenant que le style de Bootstrap est chargé sur notre page, nous avons besoin du comportement Javascript pour les composants.
 
-- Run `yarn add jquery tether`
+- Lancez `yarn add jquery tether`
 
-- Edit `src/client/index.jsx` like so:
+- Éditez votre fichier `src/client/index.jsx` comme ceci :
 
 ```js
 import $ from 'jquery'
@@ -49,14 +49,13 @@ window.jQuery = $
 window.Tether = Tether
 require('bootstrap')
 ```
+Ça chargera le code Javascript de Bootstrap.
 
-That will load Bootstrap's JavaScript code.
+### Les composants Bootstrap
 
-### Bootstrap Components
+Bien, c'est l'heure copier/coller un paquet de fichiers ! :smile:
 
-Alright, it's time for you to copy-paste a whole bunch of files.
-
-- Edit `src/shared/component/page/hello-async.jsx` like so:
+- Éditez votre fichier `src/shared/component/page/hello-async.jsx` comme ceci :
 
 ```js
 // @flow
@@ -90,7 +89,7 @@ const HelloAsyncPage = () =>
 export default HelloAsyncPage
 ```
 
-- Edit `src/shared/component/page/hello.jsx` like so:
+- Éditez votre fichier `src/shared/component/page/hello.jsx` comme ceci :
 
 ```js
 // @flow
@@ -124,7 +123,7 @@ const HelloPage = () =>
 export default HelloPage
 ```
 
-- Edit `src/shared/component/page/home.jsx` like so:
+- Éditez votre fichier `src/shared/component/page/home.jsx` comme ceci :
 
 ```js
 // @flow
@@ -171,7 +170,7 @@ const HomePage = () =>
 export default HomePage
 ```
 
-- Edit `src/shared/component/page/not-found.jsx` like so:
+- Éditez votre fichier `src/shared/component/page/not-found.jsx` comme ceci :
 
 ```js
 // @flow
@@ -197,7 +196,7 @@ const NotFoundPage = () =>
 export default NotFoundPage
 ```
 
-- Edit `src/shared/component/button.jsx` like so:
+- Éditez votre fichier `src/shared/component/button.jsx` comme ceci :
 
 ```js
 // [...]
@@ -210,7 +209,7 @@ export default NotFoundPage
 // [...]
 ```
 
-- Create a `src/shared/component/footer.jsx` file containing:
+- Créez un fichier `src/shared/component/footer.jsx` contenant :
 
 ```js
 // @flow
@@ -229,7 +228,7 @@ const Footer = () =>
 export default Footer
 ```
 
-- Create a `src/shared/component/modal-example.jsx` containing:
+- Créez un fichier `src/shared/component/modal-example.jsx` contenant :
 
 ```js
 // @flow
@@ -257,18 +256,18 @@ const ModalExample = () =>
 export default ModalExample
 ```
 
-- Edit `src/shared/app.jsx` like so:
+- Éditez votre fichier `src/shared/app.jsx` comme ceci :
 
 ```js
 const App = () =>
   <div style={{ paddingTop: 54 }}>
 ```
 
-This is an example of a *React inline style*.
+Voici un exemple de *style inline React* (style en ligne React :fr:).
 
-This will translate into: `<div style="padding-top:54px;">` in your DOM. We need this style to push the content under the navigation bar, but that's what's important here. [React inline styles](https://speakerdeck.com/vjeux/react-css-in-js) are a great way to isolate your component's styles from the global CSS namespace, but it comes at a price: You cannot use some native CSS features like `:hover`, Media Queries, animations, or `font-face`. That's [one of the reasons](https://github.com/cssinjs/jss/blob/master/docs/benefits.md#compared-to-inline-styles) we're going to integrate a CSS-in-JS library, JSS, later in this chapter.
+Cela se traduira en `<div style="padding-top:54px;">` dans votre DOM. Nous avons besoin de ce code pour pousser le contenu sous la barre de navigation, mais ce n'est pas ce qui est important ici. [Les styles inline React](https://speakerdeck.com/vjeux/react-css-in-js) sont un super moyen d'isoler le style de votre composant du CSS global, mais tout cela a un coût: vous ne pouvez pas utiliser les fonctionnalités CSS natives comme `:hover`, les media queries, les animations, ou `font-face`. C'est [l'une des raisons](https://github.com/cssinjs/jss/blob/master/docs/benefits.md#compared-to-inline-styles) pour laquelle nous allons intégrer une bibliothèque CSS-dans-le-JS, JSS, qu'on verra plus tard dans ce chapitre.
 
-- Edit `src/shared/component/nav.jsx` like so:
+- Éditez votre fichier `src/shared/component/nav.jsx` comme ceci :
 
 ```js
 // @flow
@@ -313,8 +312,7 @@ const Nav = () =>
 
 export default Nav
 ```
-
-There is something new here, `handleNavLinkClick`. One issue I encountered using Bootstrap's `navbar` in an SPA is that clicking on a link on mobile does not collapse the menu, and does not scroll back to the top of the page. This is a great opportunity to show you an example of how you would integrate some jQuery / Bootstrap-specific code in your app:
+Il y a un truc nouveau ici, `handleNavLinkClick`. Un problème qu'on a recontré en utilisant la `navbar` de Bootstrap dans une SPA (SPA = Single Page Application = Application à Page Unique :fr:), c'est que cliquer sur un lien en mobile n'affiche pas le menu, et ne scroll pas en haut de page. Voilà une super opportunité pour vous montrer un exemple de comment intégrer un peu de jQuery / du code spécifique à Bootstrap dans votre app :
 
 ```js
 import $ from 'jquery'
@@ -328,49 +326,49 @@ const handleNavLinkClick = () => {
 <NavLink /* [...] */ onClick={handleNavLinkClick}>
 ```
 
-**Note**: I've removed accessibility-related attributes (like `aria` attributes) to make the code more readable *in the context of this tutorial*. **You should absolutely put them back**. Refer to Bootstrap's documentation and code samples to see how to use them.
+**Remarque**: Ici on a retiré tous les attributs liés à l'accessibilité (comme les `aria`) afin de rendre le code plus lisible *dans le contexte de ce tutoriel*. **Vous devez absolument les remettre**. Référez vous à la documentation de et aux exemples de code pour voir comment les utiliser.
 
-🏁 Your app should now be entirely styled with Bootstrap.
+:checkered_flag: Votre devrait maintenant être totalement stylisée avec Bootstrap :sparkles: .
 
-## The current state of CSS
+## L'état actuel de CSS
 
-In 2016, the typical modern JavaScript stack settled. The different libraries and tools this tutorial made you set up are pretty much the *cutting-edge industry standard* (*cough – even though it could become completely outdated in a year from now – cough*). Yes, that's a complex stack to set up, but at least, most front-end devs agree that React-Redux-Webpack is the way to go. Now regarding CSS, I have some pretty bad news. Nothing settled, there is no standard way to go, no standard stack.
+En 2016, la stack moderne typique de JavaScript s'est intallée. Les différentes bibliothèques et outils que ce tutoriel vous a fait installer sont pratiquement les *tous derniers standards de l'industrie* (*tousse - même si tout va être totalement obsolète d'ici un an - tousse* ). Oui, c'est une stack assez complexe à mettre en place, mais au moins, la plus part des développeurs front-end sont d'accord pour dire que c'est vers React-Redux-Webpack que l'on doit se diriger. Maintenant, en ce qui concerne le CSS, on a d'assez mauvaises nouvelles. Rien n'est défini, il n'y a pas de façon standard de faire les choses.
 
-SASS, BEM, SMACSS, SUIT, Bass CSS, React Inline Styles, LESS, Styled Components, CSSX, JSS, Radium, Web Components, CSS Modules, OOCSS, Tachyons, Stylus, Atomic CSS, PostCSS, Aphrodite, React Native for Web, and many more that I forget are all different approaches or tools to get the job done. They all do it well, which is the problem, there is no clear winner, it's a big mess.
+SASS, BEM, SMACSS, SUIT, Bass CSS, React Inline Styles, LESS, Styled Components, CSSX, JSS, Radium, Web Components, CSS Modules, OOCSS, Tachyons, Stylus, Atomic CSS, PostCSS, Aphrodite, React Native for Web, [MaintainableCSS](https://github.com/naomiHauret/maintainablecss.com), [Trowel](https://github.com/Trowel/Trowel) et beaucoup d'autres qu'on ne cite pas, sont toutes des approches différentes ou des outils sur comment faire le travail. Et ils le font tous très bien ! Et c'est ça le problème : il n'y a pas de gagnant qui ressorte du lot, c'est un bazar énorme.
 
-The cool React kids tend to favor React inline styles, CSS-in-JS, or CSS Modules approaches though, since they integrate really well with React and solve programmatically many [issues](https://speakerdeck.com/vjeux/react-css-in-js) that regular CSS approaches struggle with.
+Les cool kids React ont tendance à favoriser les approches CSS-in-JS, React inline styles et les CSS modules, étant donné qu'ils s'intégrent très facilement avec React en résolvent plusieurs [problèmes](https://speakerdeck.com/vjeux/react-css-in-js) avec lesquelles les approches CSS normales ont du mal.
 
-CSS Modules work well, but they don't leverage the power of JavaScript and its many features over CSS. They just provide encapsulation, which is fine, but React inline styles and CSS-in-JS take styling to an other level in my opinion. My personal suggestion would be to use React inline styles for common styles (that's also what you have to use for React Native), and use a CSS-in-JS library for things like `:hover` and media queries.
+Les CSS Modules fonctionnent bien, mais ils ne tirent pas avantages de la puissance de JavaScript et de toutes ses fonctionnalités sur le CSS. Ils fournissent juste l'encapsulation, ce qui est correct, mais à notre avis, les React inline styles et CSS-in-JS emmènenent CSS à un tout autre niveau. Notre suggestion est d'utiliser les React inline styles pour les styles communs (c'est aussi ce que vous pouvez utiliser dans React Native), et utiliser une bibliothèque CSS-in-JS  pour les trucs comme `:hover` et les media queries.
 
-There are [tons of CSS-in-JS libraries](https://github.com/MicheleBertoli/css-in-js). JSS is a full-featured, well-rounded, and [performant](https://github.com/cssinjs/jss/blob/master/docs/performance.md) one.
+Il y a des [tonnes de bibliothèques CSS-in-JS](https://github.com/MicheleBertoli/css-in-js). JSS en est une très complète et [performante](https://github.com/cssinjs/jss/blob/master/docs/performance.md).
 
 ## JSS
 
-> 💡 **[JSS](http://cssinjs.org/)** is a CSS-in-JS library to write your styles in JavaScript and inject them into your app.
+> :bulb: **[JSS](http://cssinjs.org/)** bibliothèque CSS-in-JS qui permet d'écrire du style en Javascript et de l'injecter dans votre app.
 
-Now that we have some base template with Bootstrap, let's write some custom CSS. I mentioned earlier that React inline styles could not handle `:hover` and media queries, so we'll show a simple example of this on the homepage using JSS. JSS can be used via `react-jss`, a library that is convenient to use with React components.
+Maintenant qu'on a un template de base avec Bootstrap, écrivons un peu de CSS personnalisé. On a mentionné plus tôt que les React inline styles ne pouvait pas gérer les `:hover` et les media queries. Nous allons donc vous en montrer un exemple simple sur la homepage en utilisant JSS. JSS peut être utilisé via `react-jss`, une bibliothèque facile à utiliser avec les composants React.
 
-- Run `yarn add react-jss`
+- Lancez `yarn add react-jss`
 
-Add the following to your `.flowconfig` file, as there is currently a Flow [issue](https://github.com/cssinjs/jss/issues/411) with JSS:
+Ajoutez les lignes suivantes à votre fichier `.flowconfig`, étant donné que Flow a un [problème](https://github.com/cssinjs/jss/issues/411) avec JSS:
 
 ```flowconfig
 [ignore]
 .*/node_modules/jss/.*
 ```
 
-### Server-side
+### Côté serveur
 
-JSS can render styles on the server for the initial rendering.
+JSS peut rendre du style sur le serveur pour le rendu initial de la page.
 
-- Add the following constants to `src/shared/config.js`:
+- Ajoutez les constantes suivantes à votre fichier `src/shared/config.js` :
 
 ```js
 export const JSS_SSR_CLASS = 'jss-ssr'
 export const JSS_SSR_SELECTOR = `.${JSS_SSR_CLASS}`
 ```
 
-- Edit `src/server/render-app.jsx` like so:
+- Éditez votre fichier `src/server/render-app.jsx` comme ceci :
 
 ```js
 import { SheetsRegistry, SheetsRegistryProvider } from 'react-jss'
@@ -394,11 +392,11 @@ const renderApp = (location: string, plainPartialState: ?Object, routerContext: 
   // [...]
 ```
 
-## Client-side
+## Côté client
 
-The first thing the client should do after rendering the app client-side, is to get rid of the server-generated JSS styles.
+La première chose que le client doit faire après avoir affiché l'app côté client, c'est de se débarassé de tout le style généré côté serveur par JSS.
 
-- Add the following to `src/client/index.jsx` after the `ReactDOM.render` calls (before `setUpSocket(store)` for instance):
+- Ajoutez les lignes suivantes au fichier `src/client/index.jsx` après les appels `ReactDOM.render` (par exemple, avant `setUpSocket(store)`) :
 
 ```js
 import { APP_CONTAINER_SELECTOR, JSS_SSR_SELECTOR } from '../shared/config'
@@ -411,7 +409,7 @@ jssServerSide.parentNode.removeChild(jssServerSide)
 setUpSocket(store)
 ```
 
-Edit `src/shared/component/page/home.jsx` like so:
+Éditez le fichier `src/shared/component/page/home.jsx` comme ceci :
 
 ```js
 import injectSheet from 'react-jss'
@@ -445,15 +443,14 @@ const HomePage = ({ classes }: { classes: Object }) =>
 
 export default injectSheet(styles)(HomePage)
 ```
+A la différence des React inline styles, JSS utilise des classes. Vous passez vos styles à `injectSheet` et les classes CSS atterrissent dans les props de votre composant.
 
-Unlike React inline styles, JSS uses classes. You pass styles to `injectSheet` and the CSS classes end up in the props of your component.
+:checkered_flag: Lancez `yarn start` et `yarn dev:wds`. Ouvrez la homepage. Affichez le code source de la page (pas dans l'inspecteur) pour voir que les styles JSS sont présents dans le DOM au rendu initial dans l'élément `<style class="jss-ssr">` (seulement sur la page Home). Ils devraient être absents dans l'inspecteur, remplacés par `<style type="text/css" data-jss data-meta="HomePage">`.
 
-🏁 Run `yarn start` and `yarn dev:wds`. Open the homepage. Show the source of the page (not in the inspector) to see that the JSS styles are present in the DOM at the initial render in the `<style class="jss-ssr">` element (only on the Home page). They should be gone in the inspector, replaced by `<style type="text/css" data-jss data-meta="HomePage">`.
+**Remarque**: En production, le `data-meta` is obscurci. Parfait ! :ok_hand:
 
-**Note**: In production mode, the `data-meta` is obfuscated. Sweet!
+Si vous passez la souris au dessus du label "Hover me", il devrait devenir rouge. Si vous modifiez la taille de la page de votre navigateur pour qu'elle soit inférieure à 800px, le label "Resize your window" devrait devenir rouge. Le bouton vert étend les classe CSS Bootstrap en utilisant la propriété `composes` de JSS.
 
-If you hover over the "Hover me" label, it should turn red. If you resize your browser window to be narrower than 800px, the "Resize your window" label should turn red. The green button is extending Bootstrap's CSS classes using JSS' `composes` property.
+Prochaine section: [09 - Travis, Coveralls, Heroku](09-travis-coveralls-heroku.md#readme)
 
-Next section: [09 - Travis, Coveralls, Heroku](09-travis-coveralls-heroku.md#readme)
-
-Back to the [previous section](07-socket-io.md#readme) or the [table of contents](https://github.com/verekia/js-stack-from-scratch#table-of-contents).
+Retour à la [section précédente](07-socket-io.md#readme) ou au [sommaire](https://github.com/naomihauret/js-stack-from-scratch#table-of-contents).

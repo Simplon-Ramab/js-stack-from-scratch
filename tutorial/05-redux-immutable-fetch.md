@@ -8,7 +8,7 @@ Avant de commencez, voici une rapide introduction à ImmutableJS, qui n'a absolu
 
 ## ImmutableJS
 
-> 💡 **[ImmutableJS](https://facebook.github.io/immutable-js/)** (ou Immutable) est une bibliothèque Facebook qui sert à manipuler des collections immuables (immutable :uk:) , like comme les listes ou les maps. N'importe quel changement fait sur une collection immuable retourne un nouvel objet sans transformer l'objet original.
+> :bulb: **[ImmutableJS](https://facebook.github.io/immutable-js/)** (ou Immutable) est une bibliothèque Facebook qui sert à manipuler des collections immuables (immutable :uk:) , like comme les listes ou les maps. N'importe quel changement fait sur une collection immuable retourne un nouvel objet sans transformer l'objet original.
 
 Par exemple, au lieu de faire :
 
@@ -49,7 +49,7 @@ console.log(immutablePerson)
 
 ## Redux
 
-> **[Redux](http://redux.js.org/)** est une bibliothèque qui va prendre en charge les cycles de vie de notre application. Redux crée un  *store*, qui est la seule source de vérité à propos du *state* (l'état :fr:) de votre app à n'importe quel moment.
+> :bulb: **[Redux](http://redux.js.org/)** est une bibliothèque qui va prendre en charge les cycles de vie de notre application. Redux crée un  *store*, qui est la seule source de vérité à propos du *state* (l'état :fr:) de votre app à n'importe quel moment.
 
 Commençons par la partie simple, déclarons nos actions Redux :
 
@@ -99,7 +99,7 @@ Dans ce fichier, on initialise le *state* (l'état :fr:) de notre *reducer* (ré
 
 ## React-Redux
 
-> 💡 **[react-redux](https://github.com/reactjs/react-redux)** *connecte* un store Redux avec des composants React. Avec `react-redux`, quand le store Redux change, les composants React sont modifiés automatiquement. Ils déclenchent aussi les actions Redux.
+> :bulb: **[react-redux](https://github.com/reactjs/react-redux)** *connecte* un store Redux avec des composants React. Avec `react-redux`, quand le store Redux change, les composants React sont modifiés automatiquement. Ils déclenchent aussi les actions Redux.
 
 - Lancez `yarn add react-redux`
 
@@ -355,7 +355,7 @@ Ce dont nous avons besoin maintenant, c'est de créer l'action `sayHelloAsync`.
 
 ### Fetch
 
-> **[Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)** est une fonction JavaScript standardisée pour faire des appels asynchrones inspirée par les méthodes AJAX de jQuery.
+> :bulb: **[Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)** est une fonction JavaScript standardisée pour faire des appels asynchrones inspirée par les méthodes AJAX de jQuery.
 
 Nous allons utiliser `fetch` pour faire des appels au serveur depuis le client. `fetch` n'est pas encore supporté par tous les navigateurs, donc nous allons avoir besoin d'un polyfill (c'est-à-dire un ensemble de fonctions permettant de simuler une ou des fonctionnalités qui ne sont pas nativement disponibles dans le navigateur).
 
