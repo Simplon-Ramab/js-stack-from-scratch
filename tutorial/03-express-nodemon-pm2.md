@@ -154,7 +154,7 @@ Enfin bref, revenous à nos moutons !
 
 `start` est maintenant un pointeur vers une autre tâche, `dev:start`. Cela nous donne une couche d'abstraction pour modifier ce qu'est la tâche par défaut.
 
-Dans `dev:start`, le drapeau `--ignore lib` est pour *ne pas* redémarrer le serveur quand des changements arrivent dans le dossier `lib`. Vous n'avez pas encore ce dossier mais nous allons le générer dans la prochaine section de ce chapitre, donc tout va bientôt faire sens. Typiquement, Nodemon lance l'exécutable `node` Dans notre cas, puisqu'on utilise Babel, on peut dire à Nodemon d'utiliser l'exécutable `babel-node` à la place. De cet façon, il comprendra notre code ES6/Flow.
+Dans `dev:start`, le drapeau `--ignore lib` est pour *ne pas* redémarrer le serveur quand des changements arrivent dans le dossier `lib`. Vous n'avez pas encore ce dossier mais nous allons le générer dans la prochaine section de ce chapitre, donc tout va bientôt faire sens. Typiquement, Nodemon lance l'exécutable `node` Dans notre cas, puisqu'on utilise Babel, on peut dire à Nodemon d'utiliser l'exécutable `babel-node` à la place. De cette façon, il comprendra notre code ES6/Flow.
 
 
 
