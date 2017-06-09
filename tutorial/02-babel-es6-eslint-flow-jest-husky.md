@@ -110,7 +110,7 @@ npm info eslint-config-airbnb@latest peerDependencies --json | command sed 's/[\
 }
 ```
 
-Nous allons créer un nouveau script NPM/Yarn pour lancer ESLint. Maintenant, installons le package `eslint` pour pouvoir utiliser la `eslint` :
+Nous allons créer un nouveau script NPM/Yarn pour lancer ESLint. Maintenant, installons le package `eslint` pour pouvoir utiliser la commande `eslint` :
 
 - Lancez `yarn add --dev eslint`
 
