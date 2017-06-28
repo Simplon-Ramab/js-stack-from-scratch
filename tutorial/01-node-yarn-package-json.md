@@ -42,7 +42,7 @@ curl -o- -L https://yarnpkg.com/install.sh | bash
 
 ## `package.json` :package:
 
-> :bulb: **[package.json](https://yarnpkg.com/en/docs/package-json)** est le fichier utiliser pour décrire et configurer votre projet JavaScript. Il contient toutes les informations générales (le nom de votre projet, sa version, les différents contributeurs, sa licence, etc), les configuration d'options pour les outils que vous utilisez, et même une section pour lancer des *tâches*.
+> :bulb: **[package.json](https://yarnpkg.com/en/docs/package-json)** est le fichier utilisé pour décrire et configurer votre projet JavaScript. Il contient toutes les informations générales (le nom de votre projet, sa version, les différents contributeurs, sa licence, etc), les configuration d'options pour les outils que vous utilisez, et même une section pour lancer des *tâches*.
 
 - Créez un nouveau dossier dans lequel vous allez travailler et rendez vous dedans (`cd`).
 - Lancez `yarn init` et répondez aux questions (utilisez `yarn init -y` pour passer les questions). Cela générera un fichier `package.json` automatiquement.
@@ -67,7 +67,7 @@ Voici le `package.json` basique que nous utiliserons dans ce tutoriel :
 
 ##  Script `start` :rocket:
 
-Utiliser `node .` pour exécuter notre programme est un peu de bas-niveau. A la place, Nous allons utiliser un script NPM/Yarn pour déclencher l'exécution de ce code. Cela nous donnera un bon niveau d'abstraction pour pouvoir toujours utiliser `yarn start`, même quand notre programme devient plus complexe.
+Utiliser `node .` pour exécuter notre programme est un peu de bas-niveau. A la place, nous allons utiliser un script NPM/Yarn pour déclencher l'exécution de ce code. Cela nous donnera un bon niveau d'abstraction pour pouvoir toujours utiliser `yarn start`, même quand notre programme devient plus complexe.
 
 - Dans le fichier `package.json`, ajoutez un objet `scripts` comme ceci :
 
@@ -131,7 +131,7 @@ console.log(redHexa)
 
 Félicitations, vous avez installé et utilisé un package ! :tada:
 
-`color` is just used in this section to teach you how to use a simple package. We won't need it anymore, so you can uninstall it:
+`color` a juste été utilisé dans cette section pour vous apprendre comment utiliser un package simple. Nous n'en avons plus besoin, donc vous pouvez le désinstaller: 
 
 - Lancez `yarn remove color`
 
