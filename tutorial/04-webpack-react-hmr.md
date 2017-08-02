@@ -1,10 +1,10 @@
-# 04 - Webpack, React, and Hot Module Replacement
+# 04 - Webpack, React et Hot Module Replacement
 
 Le code pour ce chapitre est disponible [ici](https://github.com/verekia/js-stack-walkthrough/tree/master/04-webpack-react-hmr).
 
 ## Webpack
 
-> :bulb: **[Webpack](https://webpack.js.org/)** est un *module bundler* (*empaqueteur de module* :fr:). Il prend nos différents fichiers sources, les traite et les fusionne (habituellement) en un seul fichier JavScript appelé "bundle", qui est le seul fichier qui sera exécuté par le client.
+> :bulb: **[Webpack](https://webpack.js.org/)** est un *module bundler* (*empaqueteur de module* :fr:). Il prend nos différents fichiers sources, les traitent et les fusionne (habituellement) en un seul fichier JavScript appelé "bundle", qui est le seul fichier qui sera exécuté par le client.
 
 Créons un *hello world* basique et *empaquetons-le* avec Webpack.
 
@@ -27,11 +27,11 @@ import { APP_CONTAINER_SELECTOR } from '../shared/config'
 document.querySelector(APP_CONTAINER_SELECTOR).innerHTML = '<h1>Hello Webpack!</h1>'
 ```
 
-Si vous voulez utiliser les fonctionnalités ES les plus récentes dans votre code client comme les `Promise`, vous allez avoir besoin d'inclure le [Polyfill Babel](https://babeljs.io/docs/usage/polyfill/)  avant tout autre chose dans votre bundle.
+Si vous voulez utiliser les fonctionnalités ES les plus récentes dans votre code client comme les `Promise`, vous allez avoir besoin d'inclure le [Polyfill Babel](https://babeljs.io/docs/usage/polyfill/) avant tout autre chose dans votre bundle.
 
 - Lancez `yarn add babel-polyfill`
 
-Si vous lancez ESLint sur ce fichier, il se plaindra que `document` *undefined* (non-défini).
+Si vous lancez ESLint sur ce fichier, il se plaindra que `document` est *undefined* (non-défini).
 
 - Ajoutez les lignes suivantes à `env` dans votre fichier `.eslintrc.json`. Cela vous permettra d'utiliser `window` et `document`:
 
@@ -78,9 +78,9 @@ export default {
 }
 ```
 
-Ce fichier est utilisé pour décrire comment notre bundle devrait être assemblé. `entry` est le point d'entrée de notre app,  `output.filename` est le nom du bundle à générer, `output.path` et `output.publicPath` décrivent le dossier de destination et l'URL.
+Ce fichier est utilisé pour décrire comment notre bundle devrait être assemblé. `entry` est le point d'entrée de notre app, `output.filename` est le nom du bundle à générer, `output.path` et `output.publicPath` décrivent le dossier de destination et l'URL.
 
-On place ensuite le bundle dans un fichier `dist`, qui va contenir les choses qui seront générés automatiquement (pas comme le CSS déclaratif qu'on a créé plus tôt et qui, lui, est dans `public`). `module.rules` est l'endroit où vous dites à Webpack d'appliquer des traitements à certains types de fichiers. Ici, on lui dit que nous voulons que tous nos fichiers `.js` et `.jsx` (pour React), exceptés ceux dans les `node_modules` doivent passer dans quelque chose qui s'appelle `babel-loader`. On veut aussi que ces deux extensions soient utilisées pour `resolve` les modules quand on les `import`. Pour finir, on déclare un port pour le Webpack Dev Server.
+On place ensuite le bundle dans un fichier `dist`, qui va contenir les choses qui seront générées automatiquement (pas comme le CSS déclaratif qu'on a créé plus tôt et qui, lui, est dans `public`). `module.rules` est l'endroit où vous dites à Webpack d'appliquer des traitements à certains types de fichiers. Ici, on lui dit que nous voulons que tous nos fichiers `.js` et `.jsx` (pour React), exceptés ceux dans les `node_modules` doivent passer dans quelque chose qui s'appelle `babel-loader`. On veut aussi que ces deux extensions soient utilisées pour `resolve` les modules quand on les `import`. Pour finir, on déclare un port pour le Webpack Dev Server.
 
 **Remarque**: L'extension `.babel.js` est une fonctionnalité Webpack pour appliquer nos transformations Babel à ce fichier de configuration.
 
@@ -94,7 +94,7 @@ On place ensuite le bundle dans un fichier `dist`, qui va contenir les choses qu
 
 ### Modifications de tâches
 
-En mode développement, nous allons utiliser  `webpack-dev-server` pour prendre avante du Hot Module Reloading (qu'on verra plus tard dans ce chapitre), et en production on utilisera simplement `webpack` pour générer nos bundles. Dans les deux cas, le flag `--progress` est utile pour afficher des informations supplémentaires quand Webpack compile vos fichiers. En production, on passera aussi le flag `-p` à Webpack pour minifir notre code, et la variable d'environnement `NODE_ENV` passée à `production`.
+En mode développement, nous allons utiliser `webpack-dev-server` pour prendre avantage du Hot Module Reloading (qu'on verra plus tard dans ce chapitre), et en production on utilisera simplement `webpack` pour générer nos bundles. Dans les deux cas, le flag `--progress` est utile pour afficher des informations supplémentaires quand Webpack compile vos fichiers. En production, on passera aussi le flag `-p` à Webpack pour qu'il minifie notre code, et qu'il passe la variable d'environnement `NODE_ENV` à `production`.
 
 Modifions notre `scripts` pour implémenter tout ça et profitons-en pour modifier nos autres tâches aussi :
 
@@ -142,7 +142,7 @@ const renderApp = (title: string) =>
 export default renderApp
 ```
 
-Selon l'environnement dans lequel nous sommes, nous inclurons soit le bundle Webpack Dev Server, soit celui de production. Notez que le chemin pour le bundle Webpack Dev Server est *virtuel*, `dist/js/bundle.js` n'est pas vraiment lu de votre disque dur en mode développement. Il est également nécessaire de donner à Webpack Dev Server un port différent que votre port web principal.
+Selon l'environnement dans lequel nous sommes, nous inclurons soit le bundle Webpack Dev Server, soit celui de production. Notez que le chemin pour le bundle Webpack Dev Server est *virtuel*, `dist/js/bundle.js` n'est pas vraiment lu de votre disque dur en mode développement. Il est également nécessaire de donner à Webpack Dev Server un port différent de votre port web principal.
 
 - Pour finir, dans `src/server/index.js`, modifiez le message de votre `console.log` comme ceci :
 
@@ -155,10 +155,9 @@ Cela donnera aux autres développeurs une indication sur ce qu'il faut faire s'i
 
 Ok, ça fait beaucoup de changement, voyons si tout marche comme prévu :
 
-:checkered_flag: Lancez `yarn start` dans votre terminal. Ouvrez en un autre dans une nouvelle fenêtre ou un nouvel onglet, et lancez-y `yarn dev:wds`. Une fois que Webpack Dev Server a fini de générez le bundle et son sourcemaps (les deux devraient être des fichiers d'environ ~600ko) et que les 2 processus sont tranquilles dans votre terminal, ouvrez `http://localhost:8000/` dans votre navigateur. Vous devriez voir "Hello Webpack!". Ouvrez la console de votre navigateur  et sous l'onglet Source, vérifiez quels fichiers sont inclus. Vous devriez seulement voir  `static/css/style.css` sous `localhost:8000/`, et tous vos fichiers sources ES6 sous `webpack://./src`. Cela signifie que les sourcemaps fonctionnent. Dans votre éditeur de texte, dans `src/client/index.js`, changez `Hello Webpack!` en n'importe quelle autre chaîne de caractère. Dès que vous avez sauvegardé votre fichier, dans votre terminal, Webpack Dev Server devrait générer un nouveau bundle, et l'onglet de votre navigateur, se rafraîchir automatiquement.
+:checkered_flag: Lancez `yarn start` dans votre terminal. Ouvrez en un autre dans une nouvelle fenêtre ou un nouvel onglet, et lancez-y `yarn dev:wds`. Une fois que Webpack Dev Server a fini de générez le bundle et son sourcemaps (les deux devraient être des fichiers d'environ ~600ko) et que les 2 processus sont tranquilles dans votre terminal, ouvrez `http://localhost:8000/` dans votre navigateur. Vous devriez voir "Hello Webpack!". Ouvrez la console de votre navigateur et sous l'onglet Source, vérifiez quels fichiers sont inclus. Vous devriez seulement voir `static/css/style.css` sous `localhost:8000/`, et tous vos fichiers sources ES6 sous `webpack://./src`. Cela signifie que les sourcemaps fonctionnent. Dans votre éditeur de texte, dans `src/client/index.js`, changez `Hello Webpack!` en n'importe quelle autre chaîne de caractère. Dès que vous aurez sauvegardé votre fichier, dans votre terminal, Webpack Dev Server devrait générer un nouveau bundle, et l'onglet de votre navigateur, se rafraîchir automatiquement.
 
-
-- Tuez le processus précédent dans votre terminal avec Ctrl+C, puis lancez  `yarn prod:build`, et ensuite `yarn prod:start`. Ouvrez `http://localhost:8000/` dans votre navigateur. Vous devriez toujours voir "Hello Webpack!". Dans l'onglet Source de votre navigateur, vous devriez voir `static/js/bundle.js` sous `localhost:8000/`, mais pas de sources `webpack://`. Cliquez sur `bundle.js` pour être sûr que tout est bien minifié. Lancez `yarn prod:stop`.
+- Tuez le processus précédent dans votre terminal avec Ctrl+C, puis lancez `yarn prod:build`, et ensuite `yarn prod:start`. Ouvrez `http://localhost:8000/` dans votre navigateur. Vous devriez toujours voir "Hello Webpack!". Dans l'onglet Source de votre navigateur, vous devriez voir `static/js/bundle.js` sous `localhost:8000/`, mais pas de sources `webpack://`. Cliquez sur `bundle.js` pour être sûr que tout est bien minifié. Lancez `yarn prod:stop`.
 
 Bien joué, c'était assez intense. Vous avez bien mérité une pause :clap: ! La prochaine section est plus simple.
 
@@ -168,7 +167,7 @@ Bien joué, c'était assez intense. Vous avez bien mérité une pause :clap: ! L
 
 > :bulb: **[React](https://facebook.github.io/react/)** est une bibliothèque créée par Facebook qui permet de mettre en place des interfaces utilisateur. Il utilise la syntaxe **[JSX](https://facebook.github.io/react/docs/jsx-in-depth.html)** pour représenter des éléments HTML et des composants tout en exploitant la puissance de JavaScript.
 
-In this section we are going to render some text using React and JSX.
+Dans cette section nous allons "rendre" du texte en utilisant React et JSX.
 
 Tout d'abord, installons React et ReactDOM :
 
@@ -291,9 +290,9 @@ if (module.hot) {
 }
 ```
 
-Nous avons besoin de créer à notre `App` un enfant de l'`AppContainer` de `react-hot-loader`, et nous allons avoir besoin de `require` la prochaine version de notre `App` lors du *hot reloading*. Pour faire en sorte que ce processus soit propre et respecte bien les principes DRY (don't repeat yourself - ne te répète pas :fr:), nous créons une petite fonction  `wrapApp` que nous utilisons aux endroits où il a besoin d'afficher `App`. Vous êtes libre de bouger `eslint-disable global-require` en haut du fichier pour s'assurer que ce soit plus lisible.
+Nous avons besoin de créer à notre `App` un enfant de l'`AppContainer` de `react-hot-loader`, et nous allons avoir besoin de `require` la prochaine version de notre `App` lors du *hot reloading*. Pour faire en sorte que ce processus soit propre et respecte bien les principes DRY (don't repeat yourself - ne te répète pas :fr:), nous créons une petite fonction `wrapApp` que nous utilisons aux endroits où il a besoin d'afficher `App`. Vous êtes libre de bouger `eslint-disable global-require` en haut du fichier pour que ce soit plus lisible.
 
-:checkered_flag: S'il était toujours en train de tourner, redémarrez votre processus `yarn dev:wds`. Ouvrez `localhost:8000` dans votre navigateur. Dans l'onglet console de l'inspecteur du navigateur, vous devriez des logs qui concerne HMR. Allez-y, changez quelque chose dans `src/client/app.jsx` et sauvegardez. Vos changements ont lieu dans le navigateur en quelques secondes sans que la page doive se recharger entièrement ! :+1:
+:checkered_flag: S'il était toujours en train de tourner, redémarrez votre processus `yarn dev:wds`. Ouvrez `localhost:8000` dans votre navigateur. Dans l'onglet console de l'inspecteur du navigateur, vous devriez voir des logs qui concerne HMR. Allez-y, changez quelque chose dans `src/client/app.jsx` et sauvegardez. Vos changements ont lieu dans le navigateur en quelques secondes sans que la page ait à se recharger entièrement ! :+1:
 
 Prochaine section: [05 - Redux, Immutable, Fetch](05-redux-immutable-fetch.md#readme)
 

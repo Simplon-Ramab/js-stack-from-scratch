@@ -1,12 +1,12 @@
-# 02 - Babel, ES6, ESLint, Flow, Jest, and Husky
+# 02 - Babel, ES6, ESLint, Flow, Jest et Husky
 
 Le code de ce chapitre est disponible [ici](https://github.com/verekia/js-stack-walkthrough/tree/master/02-babel-es6-eslint-flow-jest-husky).
 
-Maintenant nous allons utiliser un peu de syntaxe ES6, qui est une grande amélioration pour la "vieille" syntaxe ES5.  Tous les navigateurs et environnements JS comprennent l'ES5, **mais pas l'ES6**. C'est là qu'un certain outil appelé Babel vient à notre secours !
+Maintenant nous allons utiliser un peu de syntaxe ES6, qui est une grande amélioration pour la "vieille" syntaxe ES5. Tous les navigateurs et environnements JS comprennent l'ES5, **mais pas l'ES6**. C'est là qu'un certain outil appelé Babel vient à notre secours !
 
 ## Babel
 
-> :bulb: **[Babel](https://babeljs.io/)** est un compilateur qui transforme le code ES6 (et d'autres trucs comme la syntaxe JSX de React par exemple en code ES5. Babel est très modulaire et peut être utilisé dans une tonne d'[environnements différents](https://babeljs.io/docs/setup/). C'est de loin le compilateur ES5 préféré de la communauté React.
+> :bulb: **[Babel](https://babeljs.io/)** est un compilateur qui transforme le code ES6 (et d'autres trucs comme la syntaxe JSX de React par exemple) en code ES5. Babel est très modulaire et peut être utilisé dans une tonne d'[environnements différents](https://babeljs.io/docs/setup/). C'est de loin le compilateur ES5 préféré de la communauté React.
 
 - Déplacez votre fichier `index.js` dans un nouveau dossier appelé `src` (src pour *source*). C'est ici que nous allons écrire tout notre code ES6. Retirez tout le code précédent relatif à `color` et remplacez le par un simple :
 
@@ -37,11 +37,11 @@ Maintenant, si vous essayez de lancer `yarn start`, la console devrait afficher 
 }
 ```
 
-:checkered_flag: `yarn start` devrait toujours marcher, mais maintenant il fait quelque chose. Mais vrai dire on ne peut pas vraiment savoir, étant donné qu'on utilise `babel-node` pour interpréter de l'ES6 directement. Bientôt, vous aurez la preuve que notre code ES6 est bien transformé quand vous atteindrez la section [syntaxe des modules ES6](#the-es6-modules-syntax) de ce chapitre.
+:checkered_flag: `yarn start` devrait continuer à fonctionner, mais maintenant il fait réellement quelque chose. Mais à vrai dire on ne peut pas vraiment savoir, étant donné qu'on utilise `babel-node` pour interpréter de l'ES6 directement. Bientôt, vous aurez la preuve que notre code ES6 est bien transformé quand vous atteindrez la section [syntaxe des modules ES6](#the-es6-modules-syntax) de ce chapitre.
 
 ## ES6
 
-> :bulb: **[ES6](http://es6-features.org/)**: L'amélioration la plus significative du langage JavaScript. Il y a trop de fonctionnalités ES6 pour qu'on les liste toutes ici, mais du code ES6 typique utilise des classes avec `class`, `const` et `let`, les template strings, et les *arrow functions* (fonction flèche :fr:) (`(text) => { console.log(text) }`).
+> :bulb: **[ES6](http://es6-features.org/)**: L'amélioration la plus significative du langage JavaScript. Il y a trop de fonctionnalités ES6 pour qu'on les liste toutes ici, mais du code ES6 typique utilise des classes avec `class`, `const` et `let`, des template strings, et des *arrow functions* (fonctions flèches :fr:) (`(text) => { console.log(text) }`).
 
 ### Créer une classe en ES6
 
@@ -79,7 +79,7 @@ Comme vous pouvez le voir, à la différence du package `color` utilisé précé
 
 ### La syntaxe des modules ES6
 
-Ici, on remplace tout simplement `const Dog = require('./dog')` par `import Dog from './dog'`, qui est la nouvelle syntaxe de modules ES6 (opposé à la syntaxe des modules "CommonJS"). Actuellement, elle n'est pas supporté nativement par NodeJS : ça sera donc une preuve que notre Babel transforme nos fichiers ES6 correctement.
+Ici, on remplace tout simplement `const Dog = require('./dog')` par `import Dog from './dog'`, qui est la nouvelle syntaxe de modules ES6 (opposé à la syntaxe des modules "CommonJS"). Actuellement, elle n'est pas supportée nativement par NodeJS : ça sera donc une preuve que notre Babel transforme nos fichiers ES6 correctement.
 Dans `dog.js`, on remplace aussi `module.exports = Dog` par `export default Dog`
 
 :checkered_flag: `yarn start` devrait toujours afficher "Wah wah, I am Toby". :dog:
@@ -90,19 +90,19 @@ Dans `dog.js`, on remplace aussi `module.exports = Dog` par `export default Dog`
 
 > :bulb: **[ESLint](http://eslint.org)** est un linter de choix pour du code ES6. Un linter va nous donner des informations à propos du format du code, qui va renforcer sa consistance et sa cohérence. C'est aussi un bon moyen d'apprendre des choses sur JavaScript en faisant des erreurs que ESLint va détecter.
 
-ESLint travaille avec des *règles*, et il y en a [beaucoup](http://eslint.org/docs/rules/) (:uk:). Au lieu de configurer les règles que nous voulons suivre pour notre code par nous-même, Nous allons utiliser une configuration faite par Airbnb. Cette configuration utilise quelques plugins que nous allons aussi avoir besoin d'installer.
+ESLint travaille avec des *règles*, et il y en a [beaucoup](http://eslint.org/docs/rules/) (:uk:). Au lieu de configurer les règles que nous voulons suivre pour notre code par nous-même, Nous allons utiliser une configuration conçue par Airbnb. Cette configuration utilise quelques plugins que nous allons aussi avoir besoin d'installer.
 
-Jetez un oeil aux [instructions](https://www.npmjs.com/package/eslint-config-airbnb) les plus récentes d'Airbnb pour installer le package de configuration et toutes ses dépendances. Le 2017-02-03, il est recommandé d'utiliser les commandes suivantes dans votre terminal :
+Jetez un oeil aux [instructions](https://www.npmjs.com/package/eslint-config-airbnb) les plus récentes d'Airbnb pour installer le package de configuration et toutes ses dépendances. Le 03/02/2017, il est recommandé d'utiliser la commande suivante dans votre terminal :
 
 ```sh
 npm info eslint-config-airbnb@latest peerDependencies --json | command sed 's/[\{\},]//g ; s/: /@/g' | xargs yarn add --dev eslint-config-airbnb@latest
 ```
 
-Ça devrait installer tout ce dont vous avez besoin et ajouter automatiquement `eslint-config-airbnb`, `eslint-plugin-import`, `eslint-plugin-jsx-a11y`, et `eslint-plugin-react` à votre fichier `package.json`.
+Ceci devrait installer tout ce dont vous avez besoin et ajouter automatiquement `eslint-config-airbnb`, `eslint-plugin-import`, `eslint-plugin-jsx-a11y`, et `eslint-plugin-react` à votre fichier `package.json`.
 
-**Remarque**: Nous avons remplacé `npm install` par `yarn add` dans cette. **De plus, elle ne fonctionnera pas sous Windows**, alors regardez le fichier `package.json` de ce repo installez juste les dépendances liées à ESLint manuellement avec `yarn add --dev packagename@^#.#.#`; `#.#.#` étant la version donnée par `package.json` pour chaque package.
+**Remarque**: Nous avons remplacé `npm install` par `yarn add` dans cette commande. De plus, **elle ne fonctionnera pas sous Windows**, alors regardez le fichier `package.json` de ce repo et installez juste les dépendances liées à ESLint manuellement via `yarn add --dev packagename@^#.#.#`; `#.#.#` étant la version donnée dans le `package.json` pour chaque package.
 
-- Créer un fichier `.eslintrc.json` à la racine de votre projet, comme nous l'avons fait pour Babel. Ecrivez-y les lignes suivantes :
+- Créez un fichier `.eslintrc.json` à la racine de votre projet, comme nous l'avons fait pour Babel. Ecrivez-y les lignes suivantes :
 
 ```json
 {
@@ -123,19 +123,19 @@ Modifiez l'objet `scripts` de votre `package.json` pour inclure la nouvelle tâc
 },
 ```
 
-Ici, on indique à ESLint qu'on veut qu'il *lint* tous nos fichiers JavaScript  situés sous le dossier `src`.
+Ici, on indique à ESLint qu'on veut qu'il *lint* tous nos fichiers JavaScript situés sous le dossier `src`.
 
 On utilisera cette tâche `test` standard pour lancer une série de commandes qui validerons notre code, que ce soit du *linting*, du *type checking*, ou des tests unitaires.
 
 - Lancez `yarn test`. Vous devriez voir une série d'erreurs pour des point-virgule manquants et un warning pour avoir utilisé `console.log()` dans `index.js`. Ajoutez `/* eslint-disable no-console */` en haut de votre fichier `index.js`: cela va nous permettre d'utiliser `console` dans ce fichier.
 
-**Note**: Si vous êtes sous, soyez sûr de configurer votre éditeur de texte et Git pour qu'il utilise les fins de ligne LF Unix LF et pas Windows CRLF. Si votre projet est seulement utilisé dans des environnements Windows, vous pouvez ajouter `"linebreak-style": [2, "windows"]` dans le tableau de règles ESLint' (voir l'exemple ci-dessous) pour imposer CRLF à la place.
+**Note**: Si vous êtes sous Windows, soyez sûr de configurer votre éditeur de texte et Git pour qu'ils utilisent les fins de ligne LF Unix et non des CRLF Windows. Si votre projet est seulement utilisé dans des environnements Windows, vous pouvez ajouter `"linebreak-style": [2, "windows"]` dans le tableau de règles ESLint (voir l'exemple ci-dessous) pour imposer CRLF à la place.
 
 ### Point-virgule
 
 Ok, c'est probablement le débat le plus chaud dans la communauté JavaScript mais parlons-en un peu. JavaScript a ce truc qui s'appelle l'insertion automatique de point-virgule, qui nous permet d'écrire notre code avec ou sans point-virgule. Sur ce sujet, rien de bon ou mauvais: il s'agit juste d'une préférence personnelle. Si vous aimez la syntaxe de Python, Ruby ou Scala, alors il est très probable que vous préfériez ne pas mettre de point virgule. Si vous préférez la syntaxe de Java, C#, ou PHP, c'est l'inverse.
 
-La plupart des gens écrivent du JavaScript avec des point-virgules par habitude. C'était mon cas jusqu'à ce que j'y aille en mode no point-virgule après avoir lu quelques exemples de code de la documentation Redux. Dans un premier temps c'était un peu bizarre, mais juste parce que je n'y était pas habitué. Mais après une journée à écrire mon code de cette manière, je ne me voyais pas recommencer à utiliser des point-virgules dans mon code. Ils semblaient lourds, non-nécessaires et pas à leur place. Un code sans point-virgule est plus facile à lire à mon avis, et aussi plus facile à taper.
+La plupart des gens écrivent du JavaScript avec des point-virgules par habitude. C'était mon cas jusqu'à ce que j'y aille en mode no point-virgule après avoir lu quelques exemples de code de la documentation Redux. Dans un premier temps c'était un peu bizarre, mais uniquement parce que je n'y était pas habitué. Mais après une journée à écrire mon code de cette manière, je ne me voyais pas recommencer à utiliser des point-virgules dans mon code. Ils semblaient lourds, non-nécessaires et pas à leur place. Un code sans point-virgule est plus facile à lire à mon avis, et aussi plus facile à taper.
 
 Je vous recommande de lire [la documentation ESLint sur les point-virgules](http://eslint.org/docs/rules/semi) (:uk:). Comme mentionné dans cette page, si vous décidez de ne pas utiliser de point-virgule, il y a quelques cas, assez rares, où ceux-ci sont toutefois nécessaire. ESLint peut vous protéger de tels cas avec la règle `no-unexpected-multiline`. Configurons ESLint pour pouvoir ne plus mettre de point-virgule en toute sécurité dans `.eslintrc.json`:
 
@@ -149,9 +149,9 @@ Je vous recommande de lire [la documentation ESLint sur les point-virgules](http
 }
 ```
 
-:checkered_flag: Lancez `yarn test`, et tout devrait se passer tranquillement. Essayez d'ajouter des point-virgules n'importe où dans le code pour vérifier le linter fonctionne.
+:checkered_flag: Lancez `yarn test`, et tout devrait se passer tranquillement. Essayez d'ajouter des point-virgules n'importe où dans le code pour vérifier que le linter fonctionne.
 
-Nous sommes bien conscient que certains d'entre vous vont vouloir garder les point-virgules, ce qui rend le code de ce tutoriel gênant. Si vous utilisez ce tutoriel juste pour apprendre, nous sommes sûr qu'il restera supportable pour apprendre sans point-virgules, jusqu'à pouvoir les utiliser à nouveau dans vos projets. Si vous voulez utilise le code fourni dans ce tutoriel comme *boilerplate*, cela demandera un peu de réécriture, ce qui devrait être rapide avec ESLint configuré pour imposer les point-virgules, celui-ci vous guidant durant tout le processus. Nous nous excusons si tel est votre cas !
+Nous sommes bien conscient que certains d'entre vous vont vouloir garder les point-virgules, ce qui rend le code de ce tutoriel gênant. Si vous utilisez ce tutoriel juste pour apprendre, nous sommes sûr qu'il restera supportable pour apprendre, même sans point-virgules, jusqu'à pouvoir les utiliser à nouveau dans vos projets. Si vous voulez utiliser le code fourni dans ce tutoriel comme *boilerplate*, cela demandera un peu de réécriture, ce qui devrait être rapide avec ESLint configuré pour imposer les point-virgules, celui-ci vous guidant durant tout le processus. Nous nous excusons si tel est votre cas !
 
 ### Compat
 
@@ -165,7 +165,7 @@ Nous sommes bien conscient que certains d'entre vous vont vouloir garder les poi
 "browserslist": ["> 1%"],
 ```
 
-- Edit your `.eslintrc.json` file like so:
+- Modifiez votre fichier `.eslintrc.json` comme suit :
 
 ```json
 {
@@ -185,17 +185,17 @@ Vous pouvez essayer le plugin en utilisant `navigator.serviceWorker` ou `fetch` 
 
 ### ESLint dans votre éditeur
 
-Ce chapitre vous a permi d'installer ESLint dans votre terminal, ce qui est plutôt cool pour détecter les erreurs pendant le *build*/avant de *push*, mais vous voulez aussi probablement l'intégrer dans votre IDE pour un retour immédiat. N'UTILISEZ PAS le linter ES6 natif de votre IDE. Configurez le pour que l'exécutable qu'il utilise pour le *linting* soit celui dans votre dossier `node_modules`. De cette façon, il peut utiliser toute la configuration de votre projet, la préconfiguration Airbnb etc. Sinon, vous aurez juste un linting ES6 générique.
+Ce chapitre vous a permis d'installer ESLint dans votre terminal, ce qui est plutôt cool pour détecter les erreurs pendant le *build*/avant de *push*, mais vous voulez aussi probablement l'intégrer dans votre IDE pour un retour immédiat. N'UTILISEZ PAS le linter ES6 natif de votre IDE. Configurez le pour que l'exécutable qu'il utilise pour le *linting* soit celui dans votre dossier `node_modules`. De cette façon, il pourra utiliser toute la configuration de votre projet, la préconfiguration Airbnb etc. Sinon, vous aurez juste un linting ES6 générique.
 
 ## Flow
 
 > :bulb: **[Flow](https://flowtype.org/)**: Un type checker statique par Facebook. Il détecte les types incohérents dans le code. Par exemple, il vous donnera une erreur si vous utilisez une chaîne de caractère là où il faudrait utiliser un nombre.
 
-Maintenant, notre code JavaScript est de l'ES6 valide. Flow peut analyser du JavaScript pur pour nous donner quelques idées, mais pour utiliser toute sa puissance, on va avoir besoin d'ajouter des annotations de type dans notre code, ce qui le rendra non-standard. On va avoir besoin d'apprendre à Babel et à ESLint ce que sont ces annotations de types pour qu'ils ne paniquent pas quand ils parcourront nos fichiers.
+Maintenant, notre code JavaScript est de l'ES6 valide. Flow peut analyser du JavaScript pur pour nous donner quelques idées, mais pour utiliser toute sa puissance, nous allons avoir besoin d'ajouter des annotations de type dans notre code, ce qui le rendra non standard. On va avoir besoin d'apprendre à Babel et à ESLint ce que sont ces annotations de types pour qu'ils ne paniquent pas quand ils parcourront nos fichiers.
 
 - Lancez `yarn add --dev flow-bin babel-preset-flow babel-eslint eslint-plugin-flowtype`
 
-`flow-bin` est l'exécutable pour lancer Flow dans notre tâche `scripts` , `babel-preset-flow` est une préconfiguration pour que Babel puisse comprendre les annotations de type, `babel-eslint` est un package qui permet à ESLint de *s'appuier sur le parseur de Babel* au lieu du sien, et `eslint-plugin-flowtype` est un plugin ESLint pour *linter* les annotations Flow. Pfiou.
+`flow-bin` est l'exécutable pour lancer Flow dans notre tâche `scripts`, `babel-preset-flow` est une préconfiguration pour que Babel puisse comprendre les annotations de type, `babel-eslint` est un package qui permet à ESLint de *s'appuyer sur le parseur de Babel* au lieu du sien, et `eslint-plugin-flowtype` est un plugin ESLint pour *linter* les annotations Flow. Pfiou.
 
 - Modifiez votre fichier `.babelrc` comme ceci :
 
@@ -230,7 +230,7 @@ Maintenant, notre code JavaScript est de l'ES6 valide. Flow peut analyser du Jav
 
 **Remarque**: `plugin:flowtype/recommended` contient les instructions pour dire à ESLint d'utiliser le parseur de Babel. Si vous voulez être plus explicite, libre à vous d'ajouter `"parser": "babel-eslint"` dans `.eslintrc.json`.
 
-Ça fait beaucoup d'un coup, essayez de prendre un instant pour y penser. C'est assez impressionnant de voir qu'il est possible pour ESLint d'utiliser le parseur de Babel pour comprendre les annotations Flow. Ces 2 outils sont formidables pour être aussi modulaires !
+Ça fait beaucoup d'un coup, essayez de prendre un instant pour y penser. C'est assez impressionnant de voir qu'il est possible pour ESLint d'utiliser le parseur de Babel pour comprendre les annotations Flow. Ces deux outils sont formidables pour être aussi modulaires !
 
 - Chaînez `flow` à votre tâche `test` :
 
@@ -284,9 +284,9 @@ Le commentaire `// @flow` dit à Flow que nous voulons que ce fichier soit soumi
 
 Il y a deux choses que l'on veut essayer :
 
-- Dans `dog.js`, remplacez `constructor(name: string)` par `constructor(name: number)`, et lancez `yarn test`. Vous devriez obtenir une erreur **Flow** qui dit que ces 2 types sont incompatibles. **Ce qui signifie que Flow est correctement configuré :+1: !**
+- Dans `dog.js`, remplacez `constructor(name: string)` par `constructor(name: number)`, et lancez `yarn test`. Vous devriez obtenir une erreur **Flow** qui dit que ces deux types sont incompatibles. **Ce qui signifie que Flow est correctement configuré :+1: !**
 
-- Maintenant, remplacez `constructor(name: string)` par `constructor(name:string)`, et lancez `yarn test`. Vous devriez obtenir une erreur **ESLint** qui dit que vos annotations Flow devrait avoir un espace après les deux points. should have a space after the colon.**Le pluglin Flow pour ESLint est correctement configuré :+1: !**
+- Maintenant, remplacez `constructor(name: string)` par `constructor(name:string)`, et lancez `yarn test`. Vous devriez obtenir une erreur **ESLint** qui dit que vos annotations Flow devraient avoir un espace après les deux points. **Le pluglin Flow pour ESLint est correctement configuré :+1: !**
 
 :checkered_flag: Si vous avez obtenu ces 2 erreurs, vous avez réussi à configurer Flow et ESLint ! Prenez garde à bien remettre en place les espaces dans vos annotations Flow :wink:
 
@@ -328,7 +328,7 @@ test('Dog.bark', () => {
 },
 ```
 
-Le drapeau `--coverage` dit à Jest de générer automatiquement des données de couverture pour nos tests. C'est utile pour voir quelles parties de votre code manque de test. Il écrit ces données dans un dossier nommé `coverage`.
+Le drapeau `--coverage` dit à Jest de générer automatiquement des données de couverture pour nos tests. C'est utile pour voir quelles parties de votre code manquent de test. Il écrit ces données dans un dossier nommé `coverage`.
 
 - Ajoutez `/coverage/` à votre fichier `.gitignore`
 
@@ -338,7 +338,7 @@ Le drapeau `--coverage` dit à Jest de générer automatiquement des données de
 
 > :bulb: **[Git Hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)**: Des scripts qui sont lancés quand certaines actions ont lieu, comme un commit ou un push
 
-Ok, maintenant on a cette superbe tâche `test` qui nous dit si notre code est bon ou pas. Maintenant, on va configurer des Git Hooks pour lancer automatiquement cette tâche avant chaque `git commit` et `git push`, ce qui nous évitera de pusher du mauvais code dans notre repo si la tâche `test` ne réussi pas.
+Ok, maintenant on a cette superbe tâche `test` qui nous dit si notre code est bon ou pas. Maintenant, on va configurer des Git Hooks pour lancer automatiquement cette tâche avant chaque `git commit` et `git push`, ce qui nous évitera de pusher du mauvais code dans notre repo si la tâche `test` ne réussit pas.
 
 [Husky](https://github.com/typicode/husky) est un package qui permet de créer facilement des Git Hooks.
 
@@ -357,7 +357,7 @@ Tout ce que nous avons à faire est de créer deux tâche dans `scripts`, `preco
 
 :checkered_flag: Maintenant, si vous essayez de faire un `git commit` ou un `git push`, la tâche `test` devrait se lancer automatiquement.
 
-Si ça ne marche pas, il est possible que `yarn add --dev husky` n'ait pas correctement installé les Git Hooks. Ce problème peut arriver à certaines personnes. Si c'est votre cas, lancez `yarn add --dev husky --force`,et laissez peut-être un mot décrivant votre situation sur [cette issue](https://github.com/typicode/husky/issues/84).
+Si ça ne marche pas, il est possible que `yarn add --dev husky` n'ait pas correctement installé les Git Hooks. Ce problème peut arriver à certaines personnes. Si c'est votre cas, lancez `yarn add --dev husky --force`, et laissez peut-être un mot décrivant votre situation sur [cette issue](https://github.com/typicode/husky/issues/84).
 
 **Remarque**: Si vous pushez directement après votre commit, vous pouvez utiliser `git push --no-verify` pour éviter d'avoir à lancer à nouveau les tests.
 
