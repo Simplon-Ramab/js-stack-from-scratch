@@ -119,7 +119,7 @@ Côté client, nous allons faire quelque chose de très similaire :
 // [...]
 import setUpSocket from './socket'
 
-// [at the very end of the file]
+// [À la toute fin du fichier]
 setUpSocket(store)
 ```
 Comme vous pouvez le voir, on passe un store Redux à `setUpSocket`. De cette façon, dès qu'un message Websocket venant serveur et qui altère le state Redux du client, on peut `dispatch` (expédier/envoyer/distribuer :fr:) les actions. Mais on ne va pas `dispatch` n'importe quoi dans cet exemple.
@@ -169,7 +169,7 @@ Ce qui se passe ici ne devrait pas trop vous surprendre si vous avez bien compri
 - Si le serveur nous envoie un message `IO_SERVER_HELLO`, on l'affiche dans la console du navigateur.
 - On affiche aussi n'importe quelle déconnexion.
 
-:checkered_flag: Lancez `yarn start` et `yarn dev:wds` Rendez-vous sur `http://localhost:8000`. Ouvrez la console de votre navigateur et regardez le terminal où tourne votre serveur Express. Vous devriez voir la communication Websocket entre votre serveur et votre client :+1 !
+:checkered_flag: Lancez `yarn start` et `yarn dev:wds` Rendez-vous sur `http://localhost:8000`. Ouvrez la console de votre navigateur et regardez le terminal où tourne votre serveur Express. Vous devriez voir la communication Websocket entre votre serveur et votre client :+1: !
 
 Prochaine section : [08 - Bootstrap, JSS](08-bootstrap-jss.md#readme)
 

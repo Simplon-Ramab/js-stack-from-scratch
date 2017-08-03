@@ -1,4 +1,4 @@
-# 09 - Travis, Coveralls, and Heroku
+# 09 - Travis, Coveralls et Heroku
 
 Le code pour ce chapitre est disponible dans la branche `master` du [repo JS-Stack-Boilerplate](https://github.com/verekia/js-stack-boilerplate).
 
@@ -6,9 +6,9 @@ Dans ce chapitre, nous allons intégrer notre app avec des services tiers. Ces s
 
 ## Travis
 
-> :bulb: **[Travis CI](https://travis-ci.org/)** est une plateforme d'intégration continune populaire qui est gratuite pour les projets open-source.
+> :bulb: **[Travis CI](https://travis-ci.org/)** est une plateforme d'intégration continue populaire qui est gratuite pour les projets open-source.
 
-Si votre projet est hebergé publiquement sur Github, intégrer Travis est très simple. D'abord, identifiez vous sur Travis grâce à votre compte Github et ajoutez votre repo.
+Si votre projet est hebergé publiquement sur Github, intégrer Travis est très simple. D'abord, identifiez-vous sur Travis grâce à votre compte Github et ajoutez votre repo.
 
 - Ensuite, créez un fichier `.travis.yml` contenant :
 
@@ -22,7 +22,7 @@ Travis détectera automatiquement que vous utilisez Yarn car vous avez un fichie
 
 ## Coveralls
 
-> :bulb: **[Coveralls](https://coveralls.io)** est un service qui vous donnez une historique et des statistiques sur le déroulement de vos tests.
+> :bulb: **[Coveralls](https://coveralls.io)** est un service qui vous donne un historique et des statistiques concernant la couverture de votre code par vos tests.
 
 Si votre projet est open-source sur Github et compatible avec les services d'intégration continue supportés par Coveralls, la seule chose que vous avez besoin de faire est d'acheminer le fichier généré par Jest à l'exécutable `coveralls`.
 
@@ -53,25 +53,25 @@ Vous pouvez utiliser directement le code fourni par Travis ou Coveralls, ou util
 
 ## Heroku
 
-> :bulb: **[Heroku](https://www.heroku.com/)** est un [PaaS](https://en.wikipedia.org/wiki/Platform_as_a_service) sur laquelle on peut déployez. Il s'occupe des détails d'infrastructure, vous laissant vous concentrer sur le développement de votre app sans vous souciez de ce qui se passe derrière.
+> :bulb: **[Heroku](https://www.heroku.com/)** est un [PaaS](https://en.wikipedia.org/wiki/Platform_as_a_service) sur lequel on peut déployer. Il s'occupe des détails d'infrastructure, vous laissant vous concentrer sur le développement de votre app sans vous soucier de ce qui se passe derrière.
 
-Ce tutoriel n'est en aucun cas sponsorisé par Heroku, mais puisqu'Heroku est une très, très grosse plateforme, nous allons vous montrer comme faire pour y déployer votre app. Ouais, c'est le genre truc cool que vous obtenez quand vous faites un produit cool !
+Ce tutoriel n'est en aucun cas sponsorisé par Heroku, mais puisqu'Heroku est une très, très grosse plateforme, nous allons vous montrer comme faire pour y déployer votre app. Ouais, c'est le genre de truc cool que vous obtenez quand vous faites un produit cool !
 
 **Remarque**: On pourrait ajouter une section AWS plus tard, mais une chose à la fois.
 
 ### Web setup
 
-- Si ce n'est pas encore fait, installez la [CLI Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs) et connectez vous.
+- Si ce n'est pas encore fait, installez la [CLI Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs) et connectez-vous.
 
-- Allez sur votre [Dashboard Heroku](https://dashboard.heroku.com/) et créez 2 apps, une appelée `your-project` et une autre `your-project-staging` par exemple.
+- Allez sur votre [Dashboard Heroku](https://dashboard.heroku.com/) et créez deux apps, une appelée `your-project` et une autre `your-project-staging` par exemple.
 
 On va laisser Heroku s'occuper de transpiler notre code ES6/Flow avec Babel, et générer les bundles client avec Webpack. Mais puisque ce sont des `devDependencies`, Yarn ne les installera pas dans un environnement de production comme Heroku. Modifions ce comportement avec la variable d'environnement `NPM_CONFIG_PRODUCTION`.
 
-- Dans les 2 apps, sous Settings > Config Variables, ajoutez `NPM_CONFIG_PRODUCTION` et initialisez-la à `false`.
+- Dans les deux apps, sous Settings > Config Variables, ajoutez `NPM_CONFIG_PRODUCTION` et initialisez-la à `false`.
 
 - Créez un Pipeline, et donnez accès à Heroku à votre Github.
 
-- Ajoutez les 2 apps au Pipeline, faite que celle en attente s'auto-déploie dès qu'il y a des changements sur la branche `master`, et activez Review Apps.
+- Ajoutez les 2 apps au Pipeline, faites que celle en attente s'auto-déploie dès qu'il y a des changements sur la branche `master`, et activez Review Apps.
 
 Bien, préparons notre projet pour le déploiement sur Heroku.
 
@@ -104,9 +104,9 @@ Nous n'allons plus utiliser PM2 mais `heroku local` pour passer en mode producti
 "prod:start": "heroku local",
 ```
 
-- Retirez `prod:stop` de votre fichier `package.json`. Nous n'en avons plus besoin puisque `heroku local` est un processus bloquant qu'on peut avec un Ctrl+C, pas comme `pm2 start`.
+- Retirez `prod:stop` de votre fichier `package.json`. Nous n'en avons plus besoin puisque `heroku local` est un processus bloquant que l'on peut *kill*  avec un Ctrl+C, pas comme `pm2 start`.
 
-:checkered_flag: Lancez `yarn prod:build` et `yarn prod:start`. Ca devrait démarrer votre serveur et vous afficher les logs.
+:checkered_flag: Lancez `yarn prod:build` et `yarn prod:start`. Cela devrait démarrer votre serveur et vous afficher les logs.
 
 ### Déployer en production
 
@@ -142,12 +142,10 @@ Vous allez aussi probablement vouloir spécifier quelle version de Node ou de Ya
 C'est ce que votre Review Apps va utiliser.
 
 Maintenant, vous êtes prêt à utiliser les pipelines de déploiement d'Heroku ! :tada:
-You should now be all set to use Heroku Pipeline deployments.
 
 :checkered_flag: Créez une nouvelle branche git, et ouvrez une Pull Request sur Github pour instantier une Review App. Vérifiez vos changement sur l'URL Review App URL, et si tout à l'air correct, mergez votre Pull Request avec `master` sur Github. Quelques minutes plus tard, votre app en attente devrait avoir été déployée automatiquement. Vérifiez vos changement sur l'URL de l'app en attente, et si tout a toujours l'air bon, passez en production.
 
 Vous avez terminé ! Félicitations si vous avez terminé tout ce tutoriel en partant de rien :tada: :clap: !
-You are done! Congratulations if you finished this entire tutorial starting from scratch.
 
 Vous avez bien mérité cet emoji trophée : :trophy:
 

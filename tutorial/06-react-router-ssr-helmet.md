@@ -1,4 +1,4 @@
-# 06 - React Router, Server-Side Rendering, et Helmet
+# 06 - React Router, Server-Side Rendering et Helmet
 
 Le code pour ce chapitre est disponible [ici](https://github.com/verekia/js-stack-walkthrough/tree/master/06-react-router-ssr-helmet).
 
@@ -193,7 +193,7 @@ export default App
 
 :checkered_flag: Lancez `yarn start` et `yarn dev:wds`. Dans votre navigateur, rendez-vous sur `http://localhost:8000`, et cliquez sur les liens pour naviguer entre nos différentes pages. Vous devriez voir que l'URL change dynamiquement. Passez d'une page à l'autre et utilisez le bouton "page précédente" de votre navigateur pour voir que l'historique de votre navigateur fonctionne comme prévu.
 
-Maintenant, disons que vous êtes allés sur `http://localhost:8000/hello` de cette façon. Rafraîchissez la page. Maintenant, vous obtenez une 404, parce que notre serveur Express ne répond qu'à `/`. En fait, quand vous naviguiez entre les pages, vous le faisiez seulement du côté du client. Maintenant, ajoutons le server-side rendering (rendu côté serveu :fr:) à tout ceci pour obtenir le bon comportement.
+Maintenant, disons que vous êtes allés sur `http://localhost:8000/hello` de cette façon. Rafraîchissez la page. Maintenant, vous obtenez une 404, parce que notre serveur Express ne répond qu'à `/`. En fait, quand vous naviguiez entre les pages, vous le faisiez seulement du côté du client. Maintenant, ajoutons le server-side rendering (rendu côté serveur :fr:) à tout ceci pour obtenir le bon comportement.
 
 ## Server-Side Rendering
 
@@ -205,7 +205,7 @@ La première chose que nous allons faire ici, c'est migrer la plupart de notre c
 
 ### La grosse migration vers `shared`
 
-- Déplacez tous vos fichiers situés dans le dossier `client` à `shared`, **sauf** `src/client/index.jsx`.
+- Déplacez tous vos fichiers situés dans le dossier `client` vers `shared`, **sauf** `src/client/index.jsx`.
 
 On doit modifier plusieurs de nos imports.
 
