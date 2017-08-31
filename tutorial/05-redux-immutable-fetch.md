@@ -1,33 +1,32 @@
-# 05 - Redux, Immutable, and Fetch
+# 05 - Redux, Immutable et Fetch
 
 Le code pour ce chapitre est disponible [ici](https://github.com/verekia/js-stack-walkthrough/tree/master/05-redux-immutable-fetch).
 
-Dans ce chapitre, nous allons coupler React et Redux pour faire une app très simple. Cette app contiendra un message et un bouton. Le message changera quand l'utilisateur clique sur le bouton.
+Dans ce chapitre, nous allons coupler React et Redux pour faire une app très simple. Cette app contiendra un message et un bouton. Le message changera lorsque l'utilisateur clique sur le bouton.
 
-Avant de commencez, voici une rapide introduction à ImmutableJS, qui n'a absolument rien à voir avec React et Redux mais que nous utiliserons dans ce chapitre.
+Avant de commencer, voici une rapide introduction à ImmutableJS, qui n'a absolument rien à voir avec React et Redux mais que nous utiliserons dans ce chapitre.
 
 ## ImmutableJS
 
-> :bulb: **[ImmutableJS](https://facebook.github.io/immutable-js/)** (ou Immutable) est une bibliothèque Facebook qui sert à manipuler des collections immuables (immutable :uk:) , like comme les listes ou les maps. N'importe quel changement fait sur une collection immuable retourne un nouvel objet sans transformer l'objet original.
+> :bulb: **[ImmutableJS](https://facebook.github.io/immutable-js/)** (ou Immutable) est une bibliothèque Facebook qui sert à manipuler des collections immuables (immutable :uk:), comme les listes ou les maps. N'importe quel changement effectué sur une collection immuable retourne un nouvel objet sans transformer l'objet original.
 
 Par exemple, au lieu de faire :
 
 ```js
 const obj = { a: 1 }
-obj.a = 2 // Mutates `obj`
+obj.a = 2 // Mute `obj`
 ```
 
 Vous feriez
 
 ```js
 const obj = Immutable.Map({ a: 1 })
-obj.set('a', 2) // Returns a new object without mutating `obj`
+obj.set('a', 2) // Retourne un nouvel object sans muter `obj`
 ```
 
 Cette approche suit le paradigme de la **programmation fonctionnelle** qui fonctionne très bien avec Redux. :ok_hand:
 
 Quand on crée des collections immuables, la méthode `Immutable.fromJS()` s'avère être très pratique : elle prend n'importe quel objet/tableau JS et retourne une version immuable de celui-ci :
-
 
 ```js
 const immutablePerson = Immutable.fromJS({
@@ -105,7 +104,7 @@ Dans ce fichier, on initialise le *state* (l'état :fr:) de notre *reducer* (ré
 
 Dans ces sections, nous allons créer des *Components* (composants :fr:) des *Containers* (conteneurs :fr:).
 
-Les **Components** sont des composants React *stupide*, dans le sens où ils ne savent rien du state Redux (l'état de Redux :fr:). Les **Containers** sont des composants *intelligents* qui connaissent le *state* et que nous allons *connecter* à nos composants stupides.
+Les **Components** sont des composants React *stupides*, dans le sens où ils ne savent rien du state Redux (l'état de Redux :fr:). Les **Containers** sont des composants *intelligents* qui connaissent le *state* et que nous allons *connecter* à nos composants stupides.
 
 - Créez un fichier `src/client/component/button.jsx` contenant:
 
@@ -125,7 +124,7 @@ const Button = ({ label, handleClick }: Props) =>
 export default Button
 ```
 
-**Remarque**: Vous pouvez voir un cas de *type alias* (alias de type :fr:) Flow ici. Nous définissons le type de `Props` avant d'annoter les `props` déstructurés de notre composant avec.
+**Remarque**: Vous pouvez voir un cas de *type alias* (alias de type :fr:) Flow ici. Nous définissons le type de `Props` avant d'annoter les `props` déstructurées de notre composant avec.
 
 - Créez un fichier `src/client/component/message.jsx` contenant :
 
@@ -252,10 +251,10 @@ if (module.hot) {
   })
 }
 ```
-Prenons un instant pour revoir tout ça. D'abord, nous créons un *store* avec  `createStore`. Les stores sont créés en leur passant des reducers. Ici, nous n'avons qu'un seul reducer, mair pour le bien de notre évolutivité future, nous utilisons `combineReducers` pour regrouper tous nos reducers ensemble. Le dernier paramètre bizarre de `createStore`  est un truc pour relier Redux aux [outils de développement](https://github.com/zalmoxisus/redux-devtools-extension) (Redux Devtools :uk:) du navigateur , qui sont incroyablement pratiques pour débugger. Puisque ESLint va se plaindre des underscores dans `__REDUX_DEVTOOLS_EXTENSION__`, on désactive cette règle. Ensuite, on *emballe* toute notre app dans le composant `Provider` de `react-redux`'  grâce à notre fonction `wrapApp`, et lui passons notre store.
+Prenons un instant pour revoir tout ça. D'abord, nous créons un *store* avec  `createStore`. Les stores sont créés en leur passant des reducers. Ici, nous n'avons qu'un seul reducer, mais pour le bien de notre évolutivité future, nous utilisons `combineReducers` pour regrouper tous nos reducers ensemble. Le dernier paramètre bizarre de `createStore`  est un truc pour relier Redux aux [outils de développement](https://github.com/zalmoxisus/redux-devtools-extension) (Redux Devtools :uk:) du navigateur, qui sont incroyablement pratiques pour débugger. Puisque ESLint va se plaindre des underscores dans `__REDUX_DEVTOOLS_EXTENSION__`, on désactive cette règle. Ensuite, on *emballe* toute notre app dans le composant `Provider` de `react-redux`'  grâce à notre fonction `wrapApp`, et lui passons notre store.
 
 
-:checkered_flag: Maintenant, vous pouvez lancer `yarn start` et `yarn dev:wds` et vous rendre sur `http://localhost:8000`. Vous devriez voir s'afficher "Initial reducer message" et un  button. Quand vous cliquez sur le bouton, le message devrait changer pour "Hello!". Si vous avez installé les outils de développement Redux dans votre navigateur, vous devriez voir le state de votre app changer au fur et à mesure que vous cliquez sur le bouton.
+:checkered_flag: Maintenant, vous pouvez lancer `yarn start` et `yarn dev:wds` et vous rendre sur `http://localhost:8000`. Vous devriez voir s'afficher "Initial reducer message" et un bouton. Quand vous cliquez sur le bouton, le message devrait changer pour "Hello!". Si vous avez installé les outils de développement Redux dans votre navigateur, vous devriez voir le state de votre app changer au fur et à mesure que vous cliquez sur le bouton.
 
 Félicitations, nous avons enfin créé une app qui fait quelque chose :tada: :clap: ! Bon d'accord, ce n'est pas super impressionnant de l'extérieur, mais on sait tous que c'est propulsé par une stack hyper badass sous le capot :wink: .
 
@@ -281,9 +280,9 @@ helloEndpointRoute()     // -> '/ajax/hello/:num' (for Express)
 helloEndpointRoute(1234) // -> '/ajax/hello/1234' (for the actual call)
 ```
 
-Maintenant, créons un fichier test rapidement pour s'assurer que tout fonctionne correctement :
+Maintenant, créons rapidement un fichier de test pour nous assurer que tout fonctionne correctement :
 
-- Créez un fichier `src/shared/routes.test.js` containing:
+- Créez un fichier `src/shared/routes.test.js` contenant :
 
 ```js
 import { helloEndpointRoute } from './routes'
@@ -301,7 +300,7 @@ test('helloEndpointRoute', () => {
 ```js
 import { helloEndpointRoute } from '../shared/routes'
 
-// [under app.get('/')...]
+// [Au-dessous de app.get('/')...]
 
 app.get(helloEndpointRoute(), (req, res) => {
   res.json({ serverMessage: `Hello from the server! (received ${req.params.num})` })
@@ -377,7 +376,7 @@ Puisque nous utilisons `eslint-plugin-compat`, nous allons avoir besoin d'indiqu
 
 `sayHelloAsync` ne va pas être une action normale. Les actions asynchrones sont le plus souvent séparées en 3 actions qui déclenchent 3 states différents: une action *requête* ou *chargement* (request ou loading :uk:), une action *succès* (success :uk:) et une action échec (failure :uk:)
 
-- Édit ez le fichier`src/client/action/hello.js` comme ceci :
+- Éditez le fichier `src/client/action/hello.js` comme ceci :
 
 ```js
 // @flow
@@ -537,7 +536,7 @@ const App = () =>
 export default App
 ```
 
-:checkered_flag: Lancez `yarn start` et `yarn dev:wds` et vous devriez être maintenant capable de cliquer sur le bouton "Say hello asynchronously and send 1234" et de rapporter le message correspondant depuis le serveur ! Puisque vous travaillez en local, l'appel est instantané, mais si vous ouvrez les outils de développement Redux, yvous remarquerez que chaque clic déclenche à la fois `SAY_HELLO_ASYNC_REQUEST` et `SAY_HELLO_ASYNC_SUCCESS`, ce qui fait que le message passe par le state intermédiaire `Loading...` comme on l'attendait.
+:checkered_flag: Lancez `yarn start` et `yarn dev:wds` et vous devriez maintenant être capable de cliquer sur le bouton "Say hello asynchronously and send 1234" et de récupérer le message correspondant depuis le serveur ! Puisque vous travaillez en local, l'appel est instantané, mais si vous ouvrez les outils de développement Redux, vous remarquerez que chaque clic déclenche à la fois `SAY_HELLO_ASYNC_REQUEST` et `SAY_HELLO_ASYNC_SUCCESS`, ce qui fait que le message passe par le state intermédiaire `Loading...` comme on l'attendait.
 
 Vous pouvez vous félicitez, c'était une section intense :tada: :clap: ! Mais ajoutons quelques tests :wink:
 
@@ -545,7 +544,7 @@ Vous pouvez vous félicitez, c'était une section intense :tada: :clap: ! Mais a
 
 Dans cette section, nous allons tester nos actions et notre reducer. Commençons avec les actions.
 
-Afin d'isoler la logique spécifique au fichier `action/hello.js`, on va se moquer les des choses qui ne le concernent pas, ainsi que cette requête AJAX `fetch` qui ne devrait pas déclencher un véritable appel AJAX dans nos tests.
+Afin d'isoler la logique spécifique au fichier `action/hello.js`, on va se moquer des choses qui ne le concerne pas, ainsi que cette requête AJAX `fetch` qui ne devrait pas déclencher un véritable appel AJAX dans nos tests.
 
 - Lancez `yarn add --dev redux-mock-store fetch-mock`
 
@@ -655,7 +654,7 @@ test('handle SAY_HELLO_ASYNC_FAILURE', () => {
 })
 ```
 
-Avant chaque test, on initialise `helloState` avec le résulat par défaut de notre reducer (le cas `default` de notre `switch` dans le reducer, qui retourne `initialState`). Les tests deviennent alors très explicites, on s'assure juste que le reducer modifie `message` et `messageAsync` correctement selon l'action qu'il reçoit.
+Avant chaque test, on initialise `helloState` avec le résultat par défaut de notre reducer (le cas `default` de notre `switch` dans le reducer, qui retourne `initialState`). Les tests deviennent alors très explicites, on s'assure juste que le reducer modifie `message` et `messageAsync` correctement selon l'action qu'il reçoit.
 
 :checkered_flag: Lancez `yarn test`. Tout devrait être vert !
 

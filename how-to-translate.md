@@ -2,13 +2,13 @@
 
 Merci pour l'intérêt que vous portez à ce tutoriel! Voici quelques recommandations avant de vous lancez.
 
-Ce tutoriel est en constante évolution afin de proposer aux lecteur la meilleure expérience d'apprentissage possible. Le code et le fichier `README.md` changerons tous les 2 au fil du temps. C'est génial si vous parvenez à faire une traduction en d'un seul coup, mais ça serait encore mieux si vous pouviez l'adapter en même temps que la version originale en anglais change !
+Ce tutoriel est en constante évolution afin de proposer aux lecteurs la meilleure expérience d'apprentissage possible. Le code et le fichier `README.md` changerons tous les deux au fil du temps. C'est génial si vous parvenez à faire une traduction en un seul coup, mais ce serait encore mieux si vous pouviez l'adapter en même temps que la version originale en anglais change !
 
 Voici ce que nous pensons être un bon *workflow* :
 
 - Vérifiez s'il y a déjà une [traduction en cours](https://github.com/verekia/js-stack-from-scratch/issues/147) pour votre langue. Si c'est le cas, mettez vous en contact avec les gens qui l'ont ouvert et essayez de travailler ensemble. Tous les mainteneurs seront mentionnés dans le repo en anglais. Le travail de groupe est donc encouragé! Vous pouvez ouvrir des issues sur leur traduction, forker leur projet pour offrir votre aide sur certains chapitres par exemple.
 
-- Envie de bavarder ? Rejoingnez la [room Gitter traduction](https://gitter.im/js-stack-from-scratch/Translations).
+- Envie de bavarder ? Rejoignez la [room Gitter traduction](https://gitter.im/js-stack-from-scratch/Translations).
 
 - Forkez le [repo anglais](https://github.com/verekia/js-stack-from-scratch).
 
@@ -16,7 +16,7 @@ Voici ce que nous pensons être un bon *workflow* :
 
 - Traduisez les fichiers `README.md`.
 
-- Laissez un mot quelque part sur le `README.md` principal précisant qu'il s'agit d'une traduction, avec un lien vers le repo anglais. Si vous ne prévoyez de faire évoluer votre traduction au fil du temps, essayez peut être de faire une référence au repo anglais pour avoir la version la plus à jour de ce tutoriel. C'est à vous de décider ! :wink:
+- Laissez un mot quelque part sur le `README.md` principal précisant qu'il s'agit d'une traduction, avec un lien vers le repo anglais. Si vous ne prévoyez pas de faire évoluer votre traduction au fil du temps, essayez peut-être de faire une référence au repo anglais pour avoir la version la plus à jour de ce tutoriel. C'est à vous de décider ! :wink:
 
 - Faites une pull Request au repo anglais pour ajouter le lien de votre repo forké dans la rubrique 'Translations' du `README.md` principal. Ca donnerait quelque chose comme ça :
 

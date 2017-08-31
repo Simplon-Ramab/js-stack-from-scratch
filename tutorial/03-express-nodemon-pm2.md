@@ -1,6 +1,6 @@
-# 03 - Express, Nodemon, and PM2
+# 03 - Express, Nodemon et PM2
 
-Le code pour ce chapitre est disponible ici [ici](https://github.com/verekia/js-stack-walkthrough/tree/master/03-express-nodemon-pm2).
+Le code pour ce chapitre est disponible [ici](https://github.com/verekia/js-stack-walkthrough/tree/master/03-express-nodemon-pm2).
 
 Dans cette section, nous allons créer un serveur qui affichera notre web app. Nous configurerons également un mode développment et un mode production pour ce serveur.
 
@@ -10,7 +10,7 @@ Dans cette section, nous allons créer un serveur qui affichera notre web app. N
 
 Mettons en place un serveur Express minimal qui servira à afficher notre page HTML avec un peu de CSS.
 
-- Supprimez tous les fichiers dans`src`
+- Supprimez tous les fichiers dans `src`
 
 Créez les fichiers et dossiers suivants :
 
@@ -89,7 +89,7 @@ app.listen(WEB_PORT, () => {
 })
 ```
 
-Rien de bien méchant ici, c'est presque le 'Hello world' du tutoriel de Express avec quelques imports en plus. Nous utilisons 2 dossiers statiques différents ici : `dist` pour les fichiers générés, `public` pour ceux déclarés.
+Rien de bien méchant ici, c'est presque le 'Hello world' du tutoriel de Express avec quelques imports en plus. Nous utilisons deux dossiers statiques différents ici : `dist` pour les fichiers générés, `public` pour ceux déclarés.
 
 - Créez un fichier `src/server/render-app.js` qui contient :
 
@@ -118,7 +118,6 @@ Vous savez, votre habitude d'avoir un langage de template pour le back-end ? Et 
 
 ### Coloration syntaxique pour les template strings HTML sur Atom (optionnel)
 
-
 Il est possible de faire fonctionner la coloration syntaxique pour du code HTML dans des template strings selon votre éditeur. Dans Atom, si vous préfixez votre template string avec le tag `html` (ou n'importe quel tag qui *fini* par `html`, code `jaimehtml`), il colorera automatiquement le contenu de cette string.
 
 ```js
@@ -129,7 +128,7 @@ const template = html`
 `
 ```
 
-Nous n'avons pas inclu ce petit tour dans le *boilerplate* de ce tutoriel puisqu'il semble fonctionner seulement pour Atom, ce qui est loin d'être idéal. Certains d'entre vous utilisent Atom pourraient trouver cela utile.
+Nous n'avons pas inclu ce petit tour dans le *boilerplate* de ce tutoriel puisqu'il semble fonctionner seulement pour Atom, ce qui est loin d'être idéal. Ceux d'entre vous qui utilisent Atom pourraient trouver cela utile.
 
 Enfin bref, revenous à nos moutons !
 
@@ -137,7 +136,7 @@ Enfin bref, revenous à nos moutons !
 
 :checkered_flag: Lancez `yarn start`, et dans votre navigateur, rendez-vous sur `localhost:8000`. Si tout fonctionne comme prévu, vou devriez avoir une page blanche avec "Hello App" d'écrit dans l'onglet et dans le titre vert de la page.
 
-**Remarque**: Quelques processus - typiquement, ceux qui attendent que des choses se passent, comme un serveur par exemple - vous éviterons d'entrer des commandes dans votre terminal jusqu'à ce qu'il ait fini. Pour interrompre ce genre de processus et avoir à nouveau accès à votre prompt, il faut faire **Ctrl+C**. Comme alternative, vous pouvez ouvrir un nouvel onglet dans votre terminal pour être capable d'entre d'autres commandes en même temps que votre processus tourne. Vous pouvez ausi faire tourner ces processus en arrière-plan mais c'est ça sort du cadre de notre tutoriel.
+**Remarque**: Quelques processus - typiquement, ceux qui attendent que des choses se passent, comme un serveur par exemple - vous éviterons d'entrer des commandes dans votre terminal jusqu'à ce qu'ils aient terminé. Pour interrompre ce genre de processus et avoir à nouveau accès à votre prompt, il faut faire **Ctrl+C**. Comme alternative, vous pouvez ouvrir un nouvel onglet dans votre terminal pour être capable d'entrer d'autres commandes en même temps que votre processus tourne. Vous pouvez aussi faire tourner ces processus en arrière-plan mais cela sort du cadre de notre tutoriel.
 
 ## Nodemon
 
@@ -154,21 +153,19 @@ Enfin bref, revenous à nos moutons !
 
 `start` est maintenant un pointeur vers une autre tâche, `dev:start`. Cela nous donne une couche d'abstraction pour modifier ce qu'est la tâche par défaut.
 
-Dans `dev:start`, le drapeau `--ignore lib` est pour *ne pas* redémarrer le serveur quand des changements arrivent dans le dossier `lib`. Vous n'avez pas encore ce dossier mais nous allons le générer dans la prochaine section de ce chapitre, donc tout va bientôt faire sens. Typiquement, Nodemon lance l'exécutable `node` Dans notre cas, puisqu'on utilise Babel, on peut dire à Nodemon d'utiliser l'exécutable `babel-node` à la place. De cette façon, il comprendra notre code ES6/Flow.
+Dans `dev:start`, le drapeau `--ignore lib` indique qu'il ne faut *pas* redémarrer le serveur quand des changements arrivent dans le dossier `lib`. Vous n'avez pas encore ce dossier mais nous allons le générer dans la prochaine section de ce chapitre, donc tout va bientôt faire sens. Normalement, Nodemon utilise l'exécutable `node`. Dans notre cas, puisqu'on utilise Babel, on peut dire à Nodemon d'utiliser l'exécutable `babel-node` à la place. De cette façon, il comprendra notre code ES6/Flow.
 
-
-
-:checkered_flag: Lancez `yarn start` et ouvrez `localhost:8000` dans votre navigateur. Changez la constante `APP_NAME` dans `src/shared/config.js`, qui devrait déclencher le redémarrage de votre serveur dans le terminal. Rafraîchissez la page pour voir le titre modifié.  Notez que le redémarrage automatique du serveur est différent du *Hot Module Replacement* (quand les composants d'une page sont mis à jour en temps réel). Ici nous avons toujours besoin de rafraîchir la page manuellement, mais au moins nous n'avons pas à kill le processus et à le redémarrer manuellement pour voir les changements. Le Hot Module Replacement sera introduit dans le prochain chapitre.
+:checkered_flag: Lancez `yarn start` et ouvrez `localhost:8000` dans votre navigateur. Changez la constante `APP_NAME` dans `src/shared/config.js`, qui devrait déclencher le redémarrage de votre serveur dans le terminal. Rafraîchissez la page pour voir le titre modifié. Notez que le redémarrage automatique du serveur est différent du *Hot Module Replacement* (quand les composants d'une page sont mis à jour en temps réel). Ici nous avons toujours besoin de rafraîchir la page manuellement, mais au moins nous n'avons pas à kill le processus et à le redémarrer manuellement pour voir les changements. Le Hot Module Replacement sera introduit dans le prochain chapitre.
 
 ## PM2
 
 > :bulb: **[PM2](http://pm2.keymetrics.io/)** est un process manager pour Node. Il garde tous nos processus vivants en production et offre des tonnes de fonctionnalités pour les gérer et suivre leurs performances.
 
-Nous allons utiliser PM2 dès que nous sommes en **production**.
+Nous allons utiliser PM2 dès que nous serons en **production**.
 
 - Lancez `yarn add --dev pm2`
 
-En production, vous voulez que votre serveur soit aussi performant que possible. `babel-node` déclenche tout le processus de transpilage de Babel pour vos fichiers à chaque exécution: vous ne voulez pas ça en production. Nous avons besoin que Babel fasse tout ce travail en amont, et que notre serveur rende nos bons vieux fichiers ES5 précompilés.
+En production, vous voulez que votre serveur soit aussi performant que possible. `babel-node` déclenche tout le processus de transpilage de Babel pour vos fichiers à chaque exécution: vous ne voulez pas de ça en production. Nous avons besoin que Babel fasse tout ce travail en amont, et que notre serveur rende nos bons vieux fichiers ES5 précompilés.
 
 Une des principales fonctionnalités de Babel est de prendre un dossier de code ES6 (habituellement nommé `src`) et le transpiler en un dossier de code ES5 (habituellement nommé `lib`).
 
@@ -205,9 +202,9 @@ Modifions notre fichier `package.json` :
 },
 ```
 
-:checkered_flag: Lancez `yarn prod:build`, puis `yarn prod:start`. PM2  devrait montrer un processus actif. Rendez vous sur `http://localhost:8000/`: vous devriez voir votre app. Votre terminal devrait afficher les logs, qui devraient être "Server running on port 8000 (production).". Notez qu'avec PM2, vos processus sont lancés en arrière-plan. Si vous faites Ctrl+C, cela tuera la commande `pm2 logs`, qui était la denière commande de notre chaîne `prod:start`, mais le serveur devrait toujours afficher la page. Si vous voulez arrêter le serveur, lancez `yarn prod:stop`.
+:checkered_flag: Lancez `yarn prod:build`, puis `yarn prod:start`. PM2 devrait montrer un processus actif. Rendez vous sur `http://localhost:8000/`: vous devriez voir votre app. Votre terminal devrait afficher les logs, qui devraient être "Server running on port 8000 (production).". Notez qu'avec PM2, vos processus sont lancés en arrière-plan. Si vous faites Ctrl+C, cela tuera la commande `pm2 logs`, qui était la denière commande de notre chaîne `prod:start`, mais le serveur devrait toujours afficher la page. Si vous voulez arrêter le serveur, lancez `yarn prod:stop`.
 
-Maintenant que nous avons une tâche `prod:build`, ça serait parfait si on pouvait s'assurer que tout fonctionne correctement avec de *push* du code sur le repo. Puisqu'il n'est pas vraiment nécessaire de le lancer à chaque commit, nous vous suggérons de l'ajouter à la tâche `prepush` :
+Maintenant que nous avons une tâche `prod:build`, ça serait parfait si on pouvait s'assurer que tout fonctionne correctement avant de *push* du code sur le repo. Puisqu'il n'est pas vraiment nécessaire de le lancer à chaque commit, nous vous suggérons de l'ajouter à la tâche `prepush` :
 
 ```json
 "prepush": "yarn test && yarn prod:build"
@@ -215,7 +212,7 @@ Maintenant que nous avons une tâche `prod:build`, ça serait parfait si on pouv
 
 :checkered_flag: Lancez `yarn prepush` ou *pushez* vos fichiers pour déclencher le processus.
 
-**Remarque**: Nous n'avons aucun test ici, donc Jest se plaindra un peu. Ignorez le pour l'instant.
+**Remarque**: Nous n'avons aucun test ici, donc Jest se plaindra un peu. Ignorez-le pour l'instant.
 
 Prochaine section: [04 - Webpack, React, HMR](04-webpack-react-hmr.md#readme)
 

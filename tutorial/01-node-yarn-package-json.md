@@ -1,4 +1,4 @@
-# 01 - Node, Yarn, and `package.json`
+# 01 - Node, Yarn et `package.json`
 
 Le code de ce chapitre est disponible [ici](https://github.com/verekia/js-stack-walkthrough/tree/master/01-node-yarn-package-json).
 
@@ -8,20 +8,20 @@ Dans cette section, nous allons configurer Node, Yarn, un fichier `package.json`
 
 > :bulb: **[Node.js](https://nodejs.org/)** est un environnement d'exécution JavaScript. On l'utilise principalement pour du développement back-end, mais aussi pour du scripting de façon générale. En développement front-end, Node peut être utilisé pour exécuter une série de tâches comme le linting, les tests ou encore la concaténation de fichiers.
 
-Tout au long de ce tutoriel, nous allons utiliser Node pour pratiquement **tout**, vous allez donc en avoir besoin ! Rendez vous sur la [page de téléchargement](https://nodejs.org/en/download/current/) pour les installeurs **macOS/OSX** ou **Windows**, ou la [ page d'installation de packages](https://nodejs.org/en/download/package-manager/) pour les distributions Linux..
+Tout au long de ce tutoriel, nous allons utiliser Node pour pratiquement **tout**, vous allez donc en avoir besoin ! Rendez-vous sur la [page de téléchargement](https://nodejs.org/en/download/current/) pour les installeurs **macOS/OSX** ou **Windows**, ou la [page d'installation via gestionnaire de paquets](https://nodejs.org/en/download/package-manager/) pour les distributions Linux.
 
-Par exemple, sur **Ubuntu / Debian**, vous ferez les commandes suivantes pour lancer Node :
+Par exemple, sur **Ubuntu / Debian**, vous exécuterez les commandes suivantes pour lancer Node :
 
 ```sh
 curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
 
-Vous allez avoir besoin de n'importe quelle version de Node qui soit supérieur à la 6.5.0.
+Vous allez avoir besoin de n'importe quelle version de Node qui soit supérieure à la 6.5.0.
 
 ## Node Version Management Tools :wrench:
 
-Si avez besoin de flexibilité et de pouvoir utiliser plusieurs versions de Node différentes, jetez un oeil à [NVM](https://github.com/creationix/nvm) ou [tj/n](https://github.com/tj/n).
+Si vous avez besoin de flexibilité et de pouvoir utiliser plusieurs versions de Node différentes, jetez un oeil à [NVM](https://github.com/creationix/nvm) ou [tj/n](https://github.com/tj/n).
 
 ## NPM :bear:
 
@@ -31,7 +31,7 @@ NPM est le package manager (*gestionnaire de paquets* :fr:) par défaut pour Nod
 
 > :bulb: **[Yarn](https://yarnpkg.com/)** est un package manager beaucoup plus rapide que NPM qui offre le support hors-ligne et récupère les dépendances [de façon plus prédictible](https://yarnpkg.com/en/docs/yarn-lock).
 
-Depuis qu'il est [sorti](https://code.facebook.com/posts/1840075619545360) en octobre 2016, Yarn a rapidement été adopté. Il pourrait d'ailleurs bientôt devenir le package manager plébéscité par la communauté JavaScript. Si vous voulez rester avec NPM, vous pouvez tout simplement remplacer toutes les commandes `yarn add` et `yarn add --dev` de ce tutoriel par `npm install --save` et `npm install --save-dev`.
+Depuis qu'il est [sorti](https://code.facebook.com/posts/1840075619545360) en octobre 2016, Yarn a rapidement été adopté. Il pourrait d'ailleurs bientôt devenir le package manager plébiscité par la communauté JavaScript. Si vous voulez rester avec NPM, vous pouvez tout simplement remplacer toutes les commandes `yarn add` et `yarn add --dev` de ce tutoriel par `npm install --save` et `npm install --save-dev`.
 
 Installez Yarn en suivant les [instructions](https://yarnpkg.com/en/docs/install) pour votre système d'exploitation. Nous vous recommandons d'utiliser le **script d'installation** de l'onglet *Alternatives* si vous êtes sous macOS ou Unix, pour [éviter](https://github.com/yarnpkg/yarn/issues/1505) d'avoir à recourir à d'autres gestionnaires de packages :
 
@@ -44,7 +44,7 @@ curl -o- -L https://yarnpkg.com/install.sh | bash
 
 > :bulb: **[package.json](https://yarnpkg.com/en/docs/package-json)** est le fichier utilisé pour décrire et configurer votre projet JavaScript. Il contient toutes les informations générales (le nom de votre projet, sa version, les différents contributeurs, sa licence, etc), les configuration d'options pour les outils que vous utilisez, et même une section pour lancer des *tâches*.
 
-- Créez un nouveau dossier dans lequel vous allez travailler et rendez vous dedans (`cd`).
+- Créez un nouveau dossier dans lequel vous allez travailler et rendez-vous dedans (`cd`).
 - Lancez `yarn init` et répondez aux questions (utilisez `yarn init -y` pour passer les questions). Cela générera un fichier `package.json` automatiquement.
 
 Voici le `package.json` basique que nous utiliserons dans ce tutoriel :
@@ -67,7 +67,7 @@ Voici le `package.json` basique que nous utiliserons dans ce tutoriel :
 
 ##  Script `start` :rocket:
 
-Utiliser `node .` pour exécuter notre programme est un peu de bas-niveau. A la place, nous allons utiliser un script NPM/Yarn pour déclencher l'exécution de ce code. Cela nous donnera un bon niveau d'abstraction pour pouvoir toujours utiliser `yarn start`, même quand notre programme devient plus complexe.
+Utiliser `node .` pour exécuter notre programme est un peu bas-niveau. À la place, nous allons utiliser un script NPM/Yarn pour déclencher l'exécution de ce code. Cela nous donnera un bon niveau d'abstraction pour pouvoir toujours utiliser `yarn start`, même quand notre programme deviendra plus complexe.
 
 - Dans le fichier `package.json`, ajoutez un objet `scripts` comme ceci :
 
@@ -90,7 +90,7 @@ Utiliser `node .` pour exécuter notre programme est un peu de bas-niveau. A la 
 
 ## Git et `.gitignore` :octocat:
 
-- Initialisez un repo (*repository*, ou dépôt :fr:) Git  avec `git init`
+- Initialisez un repo (*repository*, ou dépôt :fr:) Git avec `git init`
 
 - Créez un fichier `.gitignore` et ajoutez-y les lignes suivantes :
 
@@ -107,9 +107,9 @@ Les fichiers `.DS_Store` sont auto-générés par macOS. Vous ne devez jamais le
 
 Dans cette section, nous allons installer et utiliser un package. Un "package", c'est un morceau de code que quelqu'un d'autre a écrit qu'on peut utiliser dans notre propre code. Ici, nous allons essayer un package qui va nous aider à manipuler les couleurs.
 
-- Installez la package créé par la communauté qui s'appelle `color` en lançant `yarn add color`
+- Installez le package créé par la communauté qui s'appelle `color` en lançant `yarn add color`
 
-Ouvrez votre `package.json`: Yarn a automatiquement ajouté `color` dans  `dependencies`!
+Ouvrez votre `package.json`: Yarn a automatiquement ajouté `color` dans `dependencies`!
 
 Un dossier `node_modules` a aussi été créé: c'est ici qu'est placé le package qu'on vient d'installer.
 
@@ -131,13 +131,13 @@ console.log(redHexa)
 
 Félicitations, vous avez installé et utilisé un package ! :tada:
 
-`color` a juste été utilisé dans cette section pour vous apprendre comment utiliser un package simple. Nous n'en avons plus besoin, donc vous pouvez le désinstaller: 
+`color` a juste été utilisé dans cette section pour vous apprendre comment utiliser un package simple. Nous n'en avons plus besoin, vous pouvez donc le désinstaller: 
 
 - Lancez `yarn remove color`
 
-## 2 genres de dépendances
+## Deux types de dépendances
 
-Il y a 2 genres de *package dependencies* (dépendances de paquets :fr:), `"dependencies"` et `"devDependencies"`:
+Il y a deux types de *package dependencies* (dépendances de paquets :fr:), `"dependencies"` et `"devDependencies"`:
 
 **Les Dependencies** (dépendances :fr:) sont des bibliothèques dont vous avez besoin pour que votre application fonctionne (ex: React, Redux, Lodash, jQuery, Vue etc). On les installe avec `yarn add [package]`.
 
